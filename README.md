@@ -33,9 +33,9 @@ The platform is composed of four main modules:
     - The system processes audio, converts it to text, and then uses an ML model to predict and display the corresponding sign gestures.
 
 4.  **Emotion Alert System**
-    - Specifically designed for cochlear-implanted children (ages 3-5).
-    - Detects the child's Face and voice via video, provides real-time analysis of Emotional characteristics.
-    - Uses a Random Forest model to understand and respond by the respective TSL and provide adaptive emotion-based learning.
+    - Specifically designed for deaf children aged 3–10, focusing on visual emotional understanding.
+    - Detects the child’s facial expressions via webcam while watching cartoon videos, and performs real-time emotion analysis.
+    - Uses a deep learning model to classify emotions and delivers feedback to parents via email, supporting Tamil Sign Language (TSL) learning context.
 
 ## ⚙️ System Architecture
 
