@@ -43,5 +43,5 @@ The system operates with a user interacting with a web interface. Inputs (Webcam
 
 - **Learning System:** Manages lessons, MCQs, and Text-to-Sign interpretation.
 - **Audio to Sign Conversion:** Handles audio-to-text and text-to-sign image conversion.
-- **Emotion Alert System:** Manages voice input, preprocessing, and accuracy assessment.
+- **Emotion Alert System:** Manages facial expression input, feature extraction, emotion classification, and accuracy assessment for deaf children aged 3–10.
 - **Dynamic Sign Detection:** Processes webcam input through an LSTM model for Emotional gesture recognition.
