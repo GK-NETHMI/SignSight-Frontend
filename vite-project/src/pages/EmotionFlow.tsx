@@ -5,8 +5,8 @@ import Countdown from "../components/Coundowwn";
 import ProgressIndicator from "../components/ProgressIndicator";
 import CameraBubble from "../components/CameraBubble";
 
-import { useCamera } from "../../hooks/hasadara/useCamera";
-import { enterFullscreen, exitFullscreen } from "../../utils/hasadara/fullscreen";
+import { useCamera } from "../hooks/useCamera";
+import { enterFullscreen, exitFullscreen } from "../utils/fullscreen";
 
 const videos = [
   "https://www.youtube.com/embed/0yBnIUX0QAE",
