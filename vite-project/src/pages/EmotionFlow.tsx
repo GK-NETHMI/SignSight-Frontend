@@ -5,7 +5,7 @@ import Countdown from "../components/Coundowwn";
 import ProgressIndicator from "../components/ProgressIndicator";
 import CameraBubble from "../components/CameraBubble";
 
-import { useCamera } from 
+import { useCamera } from "../../hooks/hasadara/useCamera";
 import { enterFullscreen, exitFullscreen } from "../../utils/hasadara/fullscreen";
 
 const videos = [
