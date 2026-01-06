@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Emotion_landing from "./pages/hasadara/Emotion_Landing";
 import MentorLogin from "./pages/kaveesha/MentorLogin";
 import MentorSignUp from "./pages/kaveesha/MentorSignUp";
 import StudentLearningLanding from "./pages/kaveesha/StudentLanding";
@@ -13,7 +12,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/emotion_landing" element={<Emotion_landing />} />
 
         <Route path="/student/landing" element={<StudentLearningLanding />} />
         <Route path="/mentor/login" element={<MentorLogin />} />
