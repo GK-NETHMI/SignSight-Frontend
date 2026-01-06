@@ -1,44 +1,58 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+export default function YoutubePlayer({
+  url,
+  embedAllowed = true,
+}: {
+  url: string;
+  embedAllowed?: boolean;
+}) {
+  if (!url) return Fallback(url);
 
-export default function Category1_MCQ({ question, onNext }: any) {
-  const [selected, setSelected] = useState<string | null>(null);
+  if (!embedAllowed) {
+    return Fallback(url);
+  }
 
-  useEffect(() => setSelected(null), [question.id]);
+  const videoId = getVideoId(url);
+  if (!videoId) return Fallback(url);
+
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0`;
 
   return (
-    <motion.div className="px-6 py-12">
-      <h2 className="text-3xl font-extrabold text-center text-orange-600 mb-10">
-        {question.question}
-      </h2>
+    <div className="w-full aspect-video rounded-3xl overflow-hidden bg-black">
+      <iframe
+        src={embedUrl}
+        className="w-full h-full"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </div>
+  );
+}
 
-      <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {question.options.map((o: any) => (
-          <button
-            key={o.id}
-            onClick={() => setSelected(o.id)}
-            className={`
-              rounded-3xl p-4 bg-white/70 backdrop-blur shadow-lg transition
-              hover:scale-105
-              ${selected === o.id ? "ring-4 ring-orange-400 scale-105" : ""}
-            `}
-          >
-            <img src={o.image} className="h-44 mx-auto object-contain" />
-          </button>
-        ))}
-      </div>
+function getVideoId(url: string): string | null {
+  try {
+    if (url.includes("youtu.be/")) {
+      return url.split("youtu.be/")[1]?.split("?")[0];
+    }
+    return new URL(url).searchParams.get("v");
+  } catch {
+    return null;
+  }
+}
 
-      <div className="flex justify-center mt-12">
-        <button
-          disabled={!selected}
-          onClick={onNext}
-          className="px-16 py-4 rounded-full text-xl font-bold text-white
-                     bg-gradient-to-r from-orange-500 to-pink-500
-                     disabled:opacity-40"
-        >
-          Next →
-        </button>
-      </div>
-    </motion.div>
+function Fallback(url: string) {
+  return (
+    <div className="w-full aspect-video rounded-3xl bg-black flex flex-col items-center justify-center text-center p-6">
+      <p className="text-white text-lg font-semibold mb-4">
+        This video can’t be played inside the app
+      </p>
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-6 py-3 rounded-full text-lg font-bold bg-red-500 text-white"
+      >
+        ▶ Open in YouTube
+      </a>
+    </div>
   );
 }
