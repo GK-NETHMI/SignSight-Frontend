@@ -18,7 +18,7 @@ export default function StudentLearningLanding() {
         <div className="bg-white/50 backdrop-blur-xl rounded-[2.5rem] shadow-glass p-10">
           <h2 className="text-4xl font-extrabold text-center mb-3">
             <span className="text-orange-600">Choose</span>{" "}
-            <span className="text-pink-500">Learning Level</span>
+            <span className="text-pink-500">Learning Evaluation Level</span>
           </h2>
 
           <p className="text-center text-gray-600 mb-10">
@@ -49,7 +49,7 @@ export default function StudentLearningLanding() {
 
           <div className="flex justify-center">
             <PrimaryButton onClick={() => nav(`/learn/${level}`)}>
-              Start Learning ✨
+              Start Quiz ✨
             </PrimaryButton>
             <button
               onClick={() => nav("/lessons")}
