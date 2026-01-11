@@ -17,34 +17,41 @@ export default function Navbar() {
           className="flex items-center gap-3 cursor-pointer"
           onClick={() => nav("/student/landing")}
         >
-          <div className="bg-white/30 backdrop-blur rounded-full p-2">
-            <span className="text-2xl">😊</span>
+          <div className="backdrop-blur rounded-full p-2">
+            <img src="/images/signs/logo.png" alt="Logo" className="w-15 h-15" />
           </div>
           <h1 className="text-white text-2xl font-extrabold tracking-wide">
-            EmotiSense
+            SignSight
           </h1>
         </div>
 
         {/* Navigation links */}
         <div className="hidden md:flex items-center gap-6">
           <button
-            onClick={() => nav("/student/landing")}
+            onClick={() => nav("/student/dashboard")}
             className="text-white text-lg font-semibold hover:underline"
           >
-            Home
+            Dashboard
           </button>
 
           <button
-            onClick={() => nav("/instructions")}
+            onClick={() => nav("/student/landing")}
             className="text-white text-lg font-semibold hover:underline"
           >
-            Instructions
+            Quiz
+          </button>
+
+          <button
+            onClick={() => nav("/lessons")}
+            className="text-white text-lg font-semibold hover:underline"
+          >
+            Lessons
           </button>
         </div>
 
         {/* CTA */}
         <button
-          onClick={() => nav("/instructions")}
+          onClick={() => nav("/student/dashboard")}
           className="
             ml-4 px-6 py-2
             bg-white text-orange-500
@@ -54,7 +61,7 @@ export default function Navbar() {
             transition
           "
         >
-          Start 🌈
+          Profile 👤
         </button>
       </div>
     </nav>
