@@ -9,10 +9,10 @@
         "area": "Short sentences",
         "question": "Which video shows I NEED WATER?",
         "options": [
-          { "id": "A", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "B", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "C", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "D", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" }
+          { "id": "A", "video": "https://youtu.be/6_gXiBe9y9A?si=uW-VWGP_uElwjA_v" },
+          { "id": "B", "video": "https://youtu.be/JPV-vboWfhY?si=XObwM--1868VO5ho" },
+          { "id": "C", "video": "https://youtu.be/n42ohSmbAFI?si=c_wxSD85SGZ4ZH4u" },
+          { "id": "D", "video": "https://youtu.be/5vHmvYA8Z6Q?si=JfKB3w2PkwfAn1wr" }
         ],
         "correct_answer": "A"
       },
@@ -21,10 +21,10 @@
         "area": "Actions + objects",
         "question": "Which video shows DRINK WATER?",
         "options": [
-          { "id": "A", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "B", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "C", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "D", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" }
+          { "id": "A", "video": "https://youtu.be/n42ohSmbAFI?si=c_wxSD85SGZ4ZH4u" },
+          { "id": "B", "video": "https://youtu.be/5vHmvYA8Z6Q?si=JfKB3w2PkwfAn1wr" },
+          { "id": "C", "video": "https://youtu.be/bIkHfFlu4VU?si=85e_Ibv6gEZqAgRW" },
+          { "id": "D", "video": "https://youtu.be/JPV-vboWfhY?si=XObwM--1868VO5ho" }
         ],
         "correct_answer": "A"
       },
@@ -33,13 +33,13 @@
         "area": "Everyday objects",
         "question": "Which video shows OPEN DOOR?",
         "options": [
-          { "id": "A", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
+          { "id": "A", "video": "https://youtu.be/JPV-vboWfhY?si=XObwM--1868VO5ho" },
           {
             "id": "B",
-            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+            "video": "https://youtu.be/qcdivQfA41Y?si=bqSQCWEsNPrEE6eo"
           },
-          { "id": "C", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "D", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" }
+          { "id": "C", "video": "https://youtu.be/vnH2BmcSRMA?si=98lYjM92fgPEXAoR" },
+          { "id": "D", "video": "https://youtu.be/lffGJ29IhZQ?si=iW1QF1YOAjCj7fcf" }
         ],
         "correct_answer": "A"
       },
@@ -48,10 +48,10 @@
         "area": "Basic emotions",
         "question": "Which video shows SURPRISED?",
         "options": [
-          { "id": "A", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "B", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "C", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
-          { "id": "D", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" }
+          { "id": "A", "video": "https://youtu.be/qtrBGmioR2Q?si=JGn44KfjKC2TPK0t" },
+          { "id": "B", "video": "https://youtu.be/drs0_jcKr5w?si=PhhkF5R7UGvMP6X5" },
+          { "id": "C", "video": "https://youtu.be/x58C6-ZtW_8?si=kKmO7mDkd3HFv1c0" },
+          { "id": "D", "video": "https://youtu.be/bIkHfFlu4VU?si=85e_Ibv6gEZqAgRW" }
         ],
         "correct_answer": "A"
       },
@@ -62,14 +62,14 @@
         "options": [
           {
             "id": "A",
-            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+            "video": "https://youtu.be/-Eh3ktA52jw?si=WDtOlZgX4KAB-A61"
           },
-          { "id": "B", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" },
+          { "id": "B", "video": "https://youtu.be/ZE7EFgd0IWs?si=xnFTUQI9aVxxXmZA" },
           {
             "id": "C",
-            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+            "video": "https://youtu.be/5PF6JXzYyUI?si=7TEf1ZDMCyj01qqM"
           },
-          { "id": "D", "video": "https://www.youtube.com/watch?v=mCFMn0UkRt0" }
+          { "id": "D", "video": "https://youtu.be/bIkHfFlu4VU?si=85e_Ibv6gEZqAgRW" }
         ],
         "correct_answer": "A"
       }
