@@ -1,15 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import Countdown from "../components/Coundowwn";
-import ProgressIndicator from "../components/ProgressIndicator";
-import CameraBubble from "../components/CameraBubble";
+import Countdown from "../../components/hasadara/Countdown";
+import ProgressIndicator from "../../components/hasadara/ProgressIndicator";
+import CameraBubble from "../../components/hasadara/CameraBubble";
 
-import { useCamera } from "../hooks/useCamera";
-import { enterFullscreen, exitFullscreen } from "../utils/fullscreen"
+import { useCamera } from "../../hooks/hasadara/useCamera";
+import {
+  enterFullscreen,
+  exitFullscreen,
+} from "../../utils/hasadara/fullscreen";
 
+// happy: https://www.youtube.com/embed/bON-KPiiNCk
+// sad: https://www.youtube.com/embed/0yBnIUX0QAE 
+// angry: https://www.youtube.com/embed/0yBnIUX0QAE (placeholder for now)
 const videos = [
-  "https://www.youtube.com/embed/0yBnIUX0QAE",
+  "https://www.youtube.com/embed/bON-KPiiNCk",
   "https://www.youtube.com/embed/0yBnIUX0QAE",
   "https://www.youtube.com/embed/0yBnIUX0QAE",
 ];
