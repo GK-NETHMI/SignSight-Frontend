@@ -37,7 +37,7 @@ export default function Result() {
           </div>
         </div>
 
-        {/* gentle footer message */}
+        
         <p className="mt-10 text-sm text-gray-500 max-w-md">
           Thank you for helping us understand children’s emotions in a safe and
           caring way 💛
