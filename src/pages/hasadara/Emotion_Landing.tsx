@@ -15,7 +15,6 @@ export default function Landing() {
         <div className="absolute bottom-32 right-20 w-32 h-32 bg-yellow-300/30 rounded-full blur-2xl animate-pulse" />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* text */}
           <div className="text-center lg:text-left">
             <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight">
               <span className="text-orange-600">Unlocking Emotions</span>
