@@ -126,7 +126,7 @@ export default function Category4_SignToSign({
 
   return (
     <div className="min-h-[100dvh] bg-gradient-to-br from-peach via-orange-100 to-pink-100 px-6 py-8">
-      <h2 className="text-center text-2xl font-extrabold text-gray-800 mb-6">
+      <h2 className="text-center text-lg font-bold text-gray-800 mb-6">
         {question.instruction}
       </h2>
 

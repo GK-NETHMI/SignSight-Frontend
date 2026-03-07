@@ -10,7 +10,7 @@ export default function Category1_MCQ({ question, onNext }: any) {
 
   return (
     <motion.div className="px-6 py-12">
-      <h2 className="text-3xl font-extrabold text-center text-orange-600 mb-10">
+      <h2 className="text-xl font-bold text-center text-orange-600 mb-10">
         {question.question}
       </h2>
 
@@ -48,7 +48,7 @@ export default function Category1_MCQ({ question, onNext }: any) {
         <button
           disabled={!selected}
           onClick={onNext}
-          className="px-16 py-4 rounded-full text-xl font-bold text-white
+          className="px-16 py-4 rounded-full text-base font-bold text-white
                      bg-gradient-to-r from-orange-500 to-pink-500
                      disabled:opacity-40"
         >

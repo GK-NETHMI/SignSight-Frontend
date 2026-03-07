@@ -49,12 +49,11 @@ export default function Category3_VideoToText({
                 key={opt.id}
                 onClick={() => handleSelect(opt)}
                 className={`
-                  w-full px-6 py-4 rounded-full text-lg font-semibold text-left
+                  w-full px-6 py-4 rounded-full text-base font-semibold text-left
                   transition-all
-                  ${
-                    selected === opt.id
-                      ? "bg-purple-500 text-white shadow-lg scale-[1.02]"
-                      : "bg-white hover:bg-purple-50"
+                  ${selected === opt.id
+                    ? "bg-purple-500 text-white shadow-lg scale-[1.02]"
+                    : "bg-white hover:bg-purple-50"
                   }
                 `}
               >
@@ -70,11 +69,10 @@ export default function Category3_VideoToText({
         <button
           disabled={!selected}
           onClick={onNext}
-          className={`px-20 py-4 rounded-full text-xl font-bold
-            ${
-              selected
-                ? "bg-purple-500 text-white hover:bg-purple-600"
-                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          className={`px-20 py-4 rounded-full text-base font-bold
+            ${selected
+              ? "bg-purple-500 text-white hover:bg-purple-600"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
         >
           Next →

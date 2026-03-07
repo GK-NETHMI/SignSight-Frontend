@@ -38,7 +38,7 @@ export default function Category2_TextToVideo({
     <div className="h-[100dvh] bg-gradient-to-br from-peach via-orange-100 to-pink-100 flex flex-col">
       {/* QUESTION */}
       <div className="pt-6 pb-3 text-center">
-        <h2 className="text-3xl font-extrabold text-pink-500">
+        <h2 className="text-xl font-bold text-pink-500">
           {question.question}
         </h2>
 
@@ -68,12 +68,11 @@ export default function Category2_TextToVideo({
             <button
               onClick={handleSelect}
               className={`
-                mt-4 py-2 px-6 rounded-full text-lg font-bold
+                mt-4 py-2 px-6 rounded-full text-base font-bold
                 transition-all duration-300 w-[800px] max-w-full text-center ml-[2.8rem]
-                ${
-                  selectedIndex === activeIndex
-                    ? "bg-green-500 text-white scale-105"
-                    : "bg-pink-500 text-white hover:bg-pink-600 hover:scale-105"
+                ${selectedIndex === activeIndex
+                  ? "bg-green-500 text-white scale-105"
+                  : "bg-pink-500 text-white hover:bg-pink-600 hover:scale-105"
                 }
               `}
             >
@@ -92,10 +91,9 @@ export default function Category2_TextToVideo({
                 className={`
                   relative rounded-xl overflow-hidden aspect-video
                   transition-all duration-300
-                  ${
-                    i === activeIndex
-                      ? "ring-4 ring-pink-400 scale-105"
-                      : "opacity-70 hover:opacity-100 hover:scale-105"
+                  ${i === activeIndex
+                    ? "ring-4 ring-pink-400 scale-105"
+                    : "opacity-70 hover:opacity-100 hover:scale-105"
                   }
                 `}
               >
@@ -121,7 +119,7 @@ export default function Category2_TextToVideo({
           disabled={selectedIndex === null}
           onClick={onNext}
           className="
-            px-24 py-4 rounded-full text-xl font-extrabold
+            px-24 py-4 rounded-full text-base font-bold
             bg-gradient-to-r from-pink-500 to-orange-500
             text-white shadow-xl
             disabled:opacity-40 disabled:cursor-not-allowed
