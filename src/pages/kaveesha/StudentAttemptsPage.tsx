@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
 import type { Level, Area, AttemptDocument, VideoAnalysis } from "../../mentor/types";
@@ -45,13 +45,22 @@ export default function StudentAttemptsPage() {
     const [page, setPage] = useState(1);
     const [expanded, setExpanded] = useState<number | null>(null);
 
+    // Check authentication
+    useEffect(() => {
+        const studentName = localStorage.getItem("studentName");
+        if (!studentName) {
+            alert("Please login first");
+            navigate("/student/login");
+        }
+    }, [navigate]);
+
     // reset page when filter changes
     const handleFilter = (f: Level | "all") => {
         setLevelFilter(f);
         setPage(1);
     };
 
-    const { data, loading } = useStudentAttempts(levelFilter, page);
+    const { data, loading, error } = useStudentAttempts(levelFilter, page);
 
     const attempts = data?.attempts ?? [];
     const total = data?.total ?? 0;
@@ -106,6 +115,19 @@ export default function StudentAttemptsPage() {
                     {total} attempt{total !== 1 ? "s" : ""}
                 </span>
             </div>
+
+            {/* ERROR MESSAGE */}
+            {error && (
+                <div className="mb-4 p-4 bg-red-900/20 border border-red-500/50 rounded-lg">
+                    <p className="text-red-400 text-sm">{error}</p>
+                    <button
+                        onClick={() => navigate("/student/login")}
+                        className="mt-2 text-xs text-red-300 underline hover:text-red-200"
+                    >
+                        Go to Login
+                    </button>
+                </div>
+            )}
 
             {/* TABLE */}
             {loading ? (

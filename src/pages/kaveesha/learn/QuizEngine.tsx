@@ -62,13 +62,21 @@ export default function QuizEngine() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Get authenticated student's username
   const studentName = localStorage.getItem("studentName");
 
   useEffect(() => {
+    // Check if student is logged in
+    if (!studentName) {
+      alert("Please login first");
+      navigate("/student/login");
+      return;
+    }
+
     fetch(`/src/utils/kaveesha/${level}_level.json`)
       .then((r) => r.json())
       .then(setData);
-  }, [level]);
+  }, [level, studentName, navigate]);
 
   if (!data)
     return (
@@ -118,11 +126,18 @@ export default function QuizEngine() {
     try {
       setIsLoading(true);
 
+      // Verify student is still logged in
+      if (!studentName) {
+        setError("Please login first");
+        navigate("/student/login");
+        return;
+      }
+
       //CRITICAL LINE — forces UI repaint
       await new Promise((r) => setTimeout(r, 2000));
 
       await submitLevelResults({
-        user_id: studentName || "NaN",
+        user_id: studentName,
         level: level as string,
         quizzes: results,
         cat4File: cat4File as File,

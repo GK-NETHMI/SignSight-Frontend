@@ -1,24 +1,45 @@
 
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GlassPage from "../../components/ui/GlassPage";
 import Navbar from "../../components/kaveesha/Navbar";
 import PrimaryButton from "../../components/kaveesha/PrimaryButton";
+import { auth } from "../../firebase";
+import { signOut } from "firebase/auth";
 
 type Level = "basic" | "intermediate" | "advanced";
 
 export default function StudentLearningLanding() {
   const nav = useNavigate();
   const [level, setLevel] = useState<Level>("basic");
+  const [studentName, setStudentName] = useState<string>("");
 
-  const [userName, setUserName] = useState<string>("");
+  useEffect(() => {
+    // Check if student is logged in
+    const name = localStorage.getItem("studentFullName");
+    const username = localStorage.getItem("studentName");
 
-  const handleSaveName = () => {
-    if (userName.trim()) {
-      localStorage.setItem("studentName", userName);
-      alert("Name saved successfully!");
+    if (!name || !username) {
+      // Redirect to login if not authenticated
+      nav("/student/login");
+      return;
     }
-  };
+
+    setStudentName(name);
+  }, [nav]);
+
+  async function handleLogout() {
+    try {
+      await signOut(auth);
+      localStorage.removeItem("studentName");
+      localStorage.removeItem("studentUserId");
+      localStorage.removeItem("studentFullName");
+      localStorage.removeItem("studentEmail");
+      nav("/student/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  }
 
   return (
     <GlassPage>
@@ -26,30 +47,24 @@ export default function StudentLearningLanding() {
 
       <section className="max-w-6xl mx-auto px-6 py-14">
         <div className="bg-white/50 backdrop-blur-xl rounded-[2.5rem] shadow-glass p-10">
-          <h2 className="text-4xl font-extrabold text-center mb-3">
-            <span className="text-orange-600">Choose</span>{" "}
-            <span className="text-pink-500">Learning Level</span>
-          </h2>
-
-          <p className="text-center text-gray-600 mb-10">
-            Learn sign language step by step 💛
-          </p>
-
-          <div className="mb-8 flex gap-3 justify-center">
-            <input
-              type="text"
-              placeholder="Enter your name"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              className="px-4 py-3 rounded-full border-2 border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
+          {/* Welcome Section */}
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-4xl font-extrabold">
+                <span className="text-orange-600">Welcome,</span>{" "}
+                <span className="text-pink-500">{studentName}!</span>
+              </h2>
+              <p className="text-gray-600 mt-2">Choose your learning level 💛</p>
+            </div>
             <button
-              onClick={handleSaveName}
-              className="px-6 py-3 rounded-full bg-orange-600 text-white font-bold hover:bg-orange-700 transition"
+              onClick={handleLogout}
+              className="px-6 py-3 rounded-full bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 transition"
             >
-              Save Name
+              Logout 👋
             </button>
           </div>
+
+          <div className="h-px bg-gradient-to-r from-orange-200 via-pink-200 to-orange-200 mb-8" />
           <div className="grid sm:grid-cols-3 gap-6 mb-12">
             {[
               { id: "basic", emoji: "🌱", color: "orange" },
@@ -76,7 +91,7 @@ export default function StudentLearningLanding() {
             <PrimaryButton onClick={() => nav(`/learn/${level}`)}>
               Start Learning ✨
             </PrimaryButton>
-            
+
             <button
               onClick={() => nav("/lessons")}
               className="px-14 py-4 rounded-full text-lg font-bold
@@ -85,7 +100,7 @@ export default function StudentLearningLanding() {
             >
               Lessons 📘
             </button>
-             <button
+            <button
               onClick={() => nav("/student/attempts")}
               className="px-14 py-4 rounded-full text-lg font-bold
              bg-gradient-to-r from-blue-500 to-purple-600 text-white border-2 border-blue-600

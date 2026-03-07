@@ -13,12 +13,12 @@ export function useStudentAttempts(levelFilter: Level | "all", page: number) {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Get userId from localStorage (studentName is used as user_id in the system)
+        // Get userId from localStorage (username is used as user_id in the system)
         const userId = localStorage.getItem("studentName");
 
         if (!userId) {
             setError(
-                "No student name found. Please enter your name on the home page.",
+                "You are not logged in. Please login to view your results.",
             );
             setLoading(false);
             return;

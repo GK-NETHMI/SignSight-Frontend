@@ -53,7 +53,7 @@ export default function MentorLogin() {
   }
 
   return (
-    <div className="h-dvh overflow-hidden bg-gradient-to-br from-peach via-orange-100 to-pink-100">
+    <div className="min-h-screen bg-gradient-to-br from-peach via-orange-100 to-pink-100">
       <Navbar />
 
       <section className="relative max-w-xl mx-auto px-4 py-20">

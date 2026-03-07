@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MentorLogin from "./pages/kaveesha/MentorLogin";
 import MentorSignUp from "./pages/kaveesha/MentorSignUp";
+import StudentLogin from "./pages/kaveesha/StudentLogin";
+import StudentSignUp from "./pages/kaveesha/StudentSignUp";
 import StudentLearningLanding from "./pages/kaveesha/StudentLanding";
 import QuizEngine from "./pages/kaveesha/learn/QuizEngine";
 import Results from "./pages/kaveesha/ResultPage";
@@ -11,12 +13,15 @@ import LessonPlayer from "./pages/kaveesha/lessons/LessonsPlayer";
 import MentorDashboard from "./mentor/MentorDashboard";
 import AdminLogin from "./pages/kaveesha/AdminLogin";
 import AdminDashboard from "./pages/kaveesha/AdminDashboard";
-import StudentAttemptsPage from "./pages/kaveesha/StudentAttemptsPage"; 
+import StudentAttemptsPage from "./pages/kaveesha/StudentAttemptsPage";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<StudentLogin />} />
+        <Route path="/student/login" element={<StudentLogin />} />
+        <Route path="/student/signup" element={<StudentSignUp />} />
         <Route path="/student/landing" element={<StudentLearningLanding />} />
         <Route path="/student/attempts" element={<StudentAttemptsPage />} />
         <Route path="/mentor/login" element={<MentorLogin />} />
