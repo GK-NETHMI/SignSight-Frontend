@@ -1,0 +1,122 @@
+{
+  "level": "Advanced",
+  "categories": {
+    "category_1": [],
+    "category_2": [],
+    "category_3": [
+      {
+        "id": "A-C3-1",
+        "area": "objects",
+        "question": "He wants an animal that has ____",
+        "question_video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op",
+        "options": [
+          {
+            "id": "A",
+            "text": "thermal vision"
+          },
+          {
+            "id": "B",
+            "text": "infrared vision"
+          },
+          {
+            "id": "C",
+            "text": "night vision"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "A-C3-2",
+        "area": "objects",
+        "question": "His dream animal has the body of a",
+        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "options": [
+          {
+            "id": "A",
+            "text": "duck"
+          },
+          {
+            "id": "B",
+            "text": "fox"
+          },
+          {
+            "id": "C",
+            "text": "bird"
+          }
+        ],
+        "correct_answer": "C"
+      },
+      {
+        "id": "A-C3-3",
+        "area": "objects",
+        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "options": [
+          {
+            "id": "A",
+            "text": "For Someone"
+          },
+          {
+            "id": "B",
+            "text": "For Fun"
+          },
+          {
+            "id": "C",
+            "text": "For School"
+          }
+        ],
+        "correct_answer": "C"
+      },
+      {
+        "id": "A-C3-4",
+        "area": "emotions",
+        "question": "Where did she move to?",
+        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "options": [
+          {
+            "id": "A",
+            "text": "Utah"
+          },
+          {
+            "id": "B",
+            "text": "Washington"
+          },
+          {
+            "id": "C",
+            "text": "Wyoming"
+          }
+        ],
+        "correct_answer": "B"
+      },
+      {
+        "id": "A-C3-5",
+        "area": "emotions",
+        "question": "What feature did she NOT want for her dream car?",
+        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "options": [
+          {
+            "id": "A",
+            "text": "Self-driving car"
+          },
+          {
+            "id": "B",
+            "text": "Swivel seats"
+          },
+          {
+            "id": "C",
+            "text": "Sunroof"
+          }
+        ],
+        "correct_answer": "A"
+      }
+    ],
+    "category_4": [
+      {
+        "id": "A-C4-1",
+        "area": "actions",
+        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "instruction": "Watch the video and record your response using sign language. Upload your video.",
+        "expected_output": "Responding with directions politely"
+      }
+    ]
+  }
+}

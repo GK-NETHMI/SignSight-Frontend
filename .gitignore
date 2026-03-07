@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+node_modules/.vite/
+
+# Vite cache (extra safe)
+.vite/
+
+# Vite build outputs and cache
+dist/
+dist-ssr/
+.vite/
+.package-lock.json
+
+# Env
+.env
+.env.local
+
+# System
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+#media files
+src/assets/media/
+*.mp4
+*.mov

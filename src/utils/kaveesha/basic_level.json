@@ -1,0 +1,371 @@
+{
+  "level": "Basic",
+  "categories": {
+    "category_1": [
+      {
+        "id": "B-C1-1",
+        "area": "alphabet",
+        "question": "'அ' என்ற எழுத்திற்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for letter 'அ(a)']",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C1-2",
+        "area": "numbers",
+        "question": "'9' என்ற எண்ணுக்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for number 9]",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "B"
+      },
+      {
+        "id": "B-C1-3",
+        "area": "alphabet",
+        "question": "'ஒ' என்ற எழுத்திற்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for letter 'ஒ(o)']",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C1-4",
+        "area": "numbers",
+        "question": "'8' என்ற எண்ணுக்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for number 8]",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "B"
+      },
+      {
+        "id": "B-C1-5",
+        "area": "alphabet",
+        "question": "'கௌ' என்ற எழுத்திற்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for letter 'கௌ(kau)']",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C1-6",
+        "area": "alphabet",
+        "question": "'ஔ' என்ற எழுத்திற்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for letter 'ஔ(au)']",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C1-7",
+        "area": "alphabet",
+        "question": "'ஈ' என்ற எழுத்திற்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for letter 'ஈ(i)']",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C1-8",
+        "area": "numbers",
+        "question": "'10' என்ற எண்ணுக்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for number 10]",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "C"
+      },
+      {
+        "id": "B-C1-9",
+        "area": "numbers",
+        "question": "'7' என்ற எண்ணுக்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for number 7]",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C1-10",
+        "area": "alphabet",
+        "question": "'ங்' என்ற எழுத்திற்கான அடையாளத்தைத் தேர்ந்தெடுக்கவும் [Select the sign for letter 'ங்(ng)']",
+        "options": [
+          {
+            "id": "A",
+            "image": "/images/signs/alphabet_A.png"
+          },
+          {
+            "id": "B",
+            "image": "/images/signs/alphabet_B.png"
+          },
+          {
+            "id": "C",
+            "image": "/images/signs/alphabet_C.png"
+          },
+          {
+            "id": "D",
+            "image": "/images/signs/alphabet_D.png"
+          }
+        ],
+        "correct_answer": "A"
+      }
+    ],
+    "category_2": [
+      {
+        "id": "B-C2-1",
+        "area": "actions",
+        "question": "எந்த வீடியோவில் 'எப்போது' என்பதற்கான அடையாளம் காட்டப்பட்டுள்ளது? [Which video shows the sign for 'WHEN']",
+        "options": [
+          {
+            "id": "A",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "B",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "C",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "D",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C2-2",
+        "area": "emotions",
+        "question": "எந்த வீடியோவில் 'மகிழ்ச்சி' என்பதற்கான அடையாளம் காட்டப்பட்டுள்ளது? [Which video shows the sign for 'HAPPY']",
+        "options": [
+          {
+            "id": "A",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "B",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "C",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "D",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C2-3",
+        "area": "objects",
+        "question": "'நல்லது' என்பதற்கான அறிகுறியை எந்த வீடியோ காட்டுகிறது? [Which video shows the sign for 'GOOD']",
+        "options": [
+          {
+            "id": "A",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "B",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "C",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "D",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C2-4",
+        "area": "emotions",
+        "question": "எந்த வீடியோ 'கோபம்' என்பதற்கான அறிகுறியைக் காட்டுகிறது? [Which video shows the sign for 'ANGRY']",
+        "options": [
+          {
+            "id": "A",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "B",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "C",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "D",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          }
+        ],
+        "correct_answer": "A"
+      },
+      {
+        "id": "B-C2-5",
+        "area": "family",
+        "question": "எந்த வீடியோவில் 'தந்தை' என்பதற்கான அடையாளம் காட்டப்பட்டுள்ளது? [Which video shows the sign for 'FATHER']",
+        "options": [
+          {
+            "id": "A",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "B",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "C",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          },
+          {
+            "id": "D",
+            "video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op"
+          }
+        ],
+        "correct_answer": "A"
+      }
+    ],
+    "category_3": [],
+    "category_4": []
+  }
+}
