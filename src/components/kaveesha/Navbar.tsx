@@ -18,10 +18,10 @@ export default function Navbar() {
           onClick={() => nav("/student/landing")}
         >
           <div className="bg-white/30 backdrop-blur rounded-full p-2">
-            <span className="text-2xl">😊</span>
+            <img src="/images/logo.png" alt="SignSight Logo" className="w-8 h-8 rounded-full" />
           </div>
           <h1 className="text-white text-2xl font-extrabold tracking-wide">
-            EmotiSense
+            SignSight
           </h1>
         </div>
 
