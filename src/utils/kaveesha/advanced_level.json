@@ -8,7 +8,7 @@
         "id": "A-C3-1",
         "area": "objects",
         "question": "He wants an animal that has ____",
-        "question_video": "https://youtu.be/mCFMn0UkRt0?si=Btu8cOh91OKq28Op",
+        "question_video": "/images/signs/He wants an animal that has.mp4",
         "options": [
           {
             "id": "A",
@@ -23,13 +23,13 @@
             "text": "night vision"
           }
         ],
-        "correct_answer": "A"
+        "correct_answer": "A" 
       },
       {
         "id": "A-C3-2",
         "area": "objects",
         "question": "His dream animal has the body of a",
-        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "question_video": "/images/signs/He wants an animal that has.mp4",
         "options": [
           {
             "id": "A",
@@ -49,7 +49,7 @@
       {
         "id": "A-C3-3",
         "area": "objects",
-        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "question_video": "/images/signs/For School.mp4",
         "options": [
           {
             "id": "A",
@@ -70,7 +70,7 @@
         "id": "A-C3-4",
         "area": "emotions",
         "question": "Where did she move to?",
-        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "question_video": "/images/signs/Washington.mp4",
         "options": [
           {
             "id": "A",
@@ -91,7 +91,7 @@
         "id": "A-C3-5",
         "area": "emotions",
         "question": "What feature did she NOT want for her dream car?",
-        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "question_video": "/images/signs/Washington.mp4",
         "options": [
           {
             "id": "A",
@@ -113,7 +113,7 @@
       {
         "id": "A-C4-1",
         "area": "actions",
-        "question_video": "https://www.youtube.com/watch?v=mCFMn0UkRt0",
+        "question_video": "/images/signs/where are you from.mp4",
         "instruction": "Watch the video and record your response using sign language. Upload your video.",
         "expected_output": "Responding with directions politely"
       }
