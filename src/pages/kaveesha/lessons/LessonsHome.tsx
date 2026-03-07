@@ -58,7 +58,7 @@ export default function LessonsHome() {
           </p>
 
           {/* CATEGORY CARDS */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-7xl w-full">
             <CategoryCard
               emoji="🎨"
               title="Colors"
@@ -75,6 +75,18 @@ export default function LessonsHome() {
               emoji="🔢"
               title="Numbers"
               onClick={() => setOpen("numbers")}
+            />
+
+            <CategoryCard
+              emoji="😊"
+              title="Emotions"
+              onClick={() => nav("/lessons/emotions/main")}
+            />
+
+            <CategoryCard
+              emoji="👨‍👩‍👧‍👦"
+              title="Family"
+              onClick={() => nav("/lessons/family/main")}
             />
           </div>
         </div>

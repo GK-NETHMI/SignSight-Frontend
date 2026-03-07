@@ -68,10 +68,9 @@ export default function CategoryIntroModal({
                   <div
                     className={`
                       w-16 h-16 rounded-full shadow-lg border-4 transition-all
-                      ${
-                        selected?.value === item.value
-                          ? "border-orange-500 scale-110"
-                          : "border-transparent"
+                      ${selected?.value === item.value
+                        ? "border-orange-500 scale-110"
+                        : "border-transparent"
                       }
                     `}
                     style={{ backgroundColor: item.color }}
@@ -81,10 +80,9 @@ export default function CategoryIntroModal({
                     className={`
                       w-16 h-16 rounded-full flex items-center justify-center
                       text-xl font-bold shadow-lg bg-orange-100
-                      ${
-                        selected?.value === item.value
-                          ? "ring-4 ring-orange-400 scale-110"
-                          : ""
+                      ${selected?.value === item.value
+                        ? "ring-4 ring-orange-400 scale-110"
+                        : ""
                       }
                     `}
                   >
@@ -115,10 +113,9 @@ export default function CategoryIntroModal({
               onClick={() => selected && onNext(selected)}
               className={`
                 px-10 py-3 rounded-full text-lg font-bold transition-all
-                ${
-                  selected
-                    ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white hover:scale-105"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                ${selected
+                  ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white hover:scale-105"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
                 }
               `}
             >

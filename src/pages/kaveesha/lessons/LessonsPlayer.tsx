@@ -19,11 +19,20 @@ export default function LessonPlayer() {
   const file = config.files[item];
   const src = `/lessons/${config.folder}/${file}`;
 
+  // Display proper title - use category name for "main" items
+  const displayTitle = item === "main"
+    ? category === "emotions"
+      ? "Emotions"
+      : category === "family"
+        ? "Family Members"
+        : item
+    : item;
+
   return (
     <>
       <LessonBackground>
         <div className="min-h-screen bg-peach flex flex-col items-center justify-center p-6">
-          <h1 className="text-3xl font-bold mb-6 capitalize">{item}</h1>
+          <h1 className="text-3xl font-bold mb-6 capitalize">{displayTitle}</h1>
 
           {config.type === "video" ? (
             <video

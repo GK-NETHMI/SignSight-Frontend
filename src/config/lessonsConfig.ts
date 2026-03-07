@@ -64,4 +64,22 @@ export const LESSONS_CONFIG: Record<
       "10": "10.png",
     },
   },
+
+  emotions: {
+    type: "video",
+    folder: "Emotions",
+    order: ["main"],
+    files: {
+      main: "Emotions.mp4",
+    },
+  },
+
+  family: {
+    type: "video",
+    folder: "Family",
+    order: ["main"],
+    files: {
+      main: "Family.mp4",
+    },
+  },
 };
