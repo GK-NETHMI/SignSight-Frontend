@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import jsPDF from "jspdf";
 import type { Level, Area, AttemptDocument, VideoAnalysis } from "../types";
 import { useAttempts } from "../hooks/useMentorData";
 import {
@@ -218,7 +219,7 @@ export default function AttemptsPage({ userId }: { userId: string }) {
                         {isOpen && (
                           <tr style={{ background: "rgba(255,255,255,0.025)" }}>
                             <td colSpan={8} className="px-5 py-4">
-                              <DetailPanel attempt={att} />
+                              <DetailPanel attempt={att} userId={userId} />
                             </td>
                           </tr>
                         )}
@@ -279,103 +280,265 @@ export default function AttemptsPage({ userId }: { userId: string }) {
 /* ============================================================
    DETAIL PANEL  (expanded row content)
    ============================================================ */
-function DetailPanel({ attempt: att }: { attempt: AttemptDocument }) {
+function DetailPanel({ attempt: att, userId }: { attempt: AttemptDocument; userId: string }) {
   const areas = att.areas ?? {};
+
+  const generateReport = () => {
+    const doc = new jsPDF();
+    let yPos = 20;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 20;
+    const contentWidth = pageWidth - 2 * margin;
+
+    // Helper to add text with word wrap
+    const addText = (text: string, fontSize: number = 10, isBold: boolean = false, color: [number, number, number] = [0, 0, 0]) => {
+      doc.setFontSize(fontSize);
+      doc.setTextColor(color[0], color[1], color[2]);
+      if (isBold) doc.setFont("helvetica", "bold");
+      else doc.setFont("helvetica", "normal");
+
+      const lines = doc.splitTextToSize(text, contentWidth);
+      lines.forEach((line: string) => {
+        if (yPos > 270) {
+          doc.addPage();
+          yPos = 20;
+        }
+        doc.text(line, margin, yPos);
+        yPos += fontSize * 0.5;
+      });
+      yPos += 2;
+    };
+
+    const addSection = (title: string) => {
+      yPos += 5;
+      doc.setFillColor(59, 130, 246); // Blue
+      doc.rect(margin, yPos - 4, contentWidth, 8, "F");
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "bold");
+      doc.text(title, margin + 2, yPos + 2);
+      yPos += 10;
+      doc.setTextColor(0, 0, 0);
+    };
+
+    // HEADER
+    doc.setFillColor(30, 58, 138); // Dark blue
+    doc.rect(0, 0, pageWidth, 35, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(20);
+    doc.setFont("helvetica", "bold");
+    doc.text("SIGNSIGHT", pageWidth / 2, 15, { align: "center" });
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text("Student Performance Report", pageWidth / 2, 25, { align: "center" });
+
+    yPos = 45;
+    doc.setTextColor(0, 0, 0);
+
+    // STUDENT INFORMATION
+    addSection("STUDENT INFORMATION");
+    addText(`Student ID: ${userId}`, 10, true);
+    addText(`Attempt Number: #${att.attemptNumber}`);
+    addText(`Level: ${att.level.toUpperCase()}`, 10, true, [220, 38, 38]);
+    addText(`Date: ${formatDate(getDateString(att.createdAt))}`);
+
+    // OVERALL PERFORMANCE
+    addSection("OVERALL PERFORMANCE");
+    const score = att.quiz?.overallScore ?? 0;
+    const scoreColor: [number, number, number] = score >= 75 ? [34, 197, 94] : score >= 50 ? [251, 146, 60] : [239, 68, 68];
+    addText(`Score: ${att.quiz?.overallScore ?? "—"}%`, 12, true, scoreColor);
+    addText(`Assessment: ${att.quiz?.assessment ?? "N/A"}`, 10, true);
+
+    // AREA BREAKDOWN
+    if (Object.entries(areas).length > 0) {
+      addSection("AREA BREAKDOWN");
+      Object.entries(areas)
+        .sort((a, b) => (b[1].percentage ?? 0) - (a[1].percentage ?? 0))
+        .forEach(([area, data]) => {
+          const areaName = area.charAt(0).toUpperCase() + area.slice(1);
+          addText(`${areaName}: ${data.percentage}% (${data.correct}/${data.total})`, 10, true);
+
+          // Draw progress bar
+          const barWidth = (data.percentage / 100) * (contentWidth - 10);
+          const barColor: [number, number, number] = data.percentage >= 75 ? [34, 197, 94] : data.percentage >= 50 ? [251, 146, 60] : [239, 68, 68];
+          doc.setFillColor(229, 231, 235); // Gray background
+          doc.rect(margin, yPos - 3, contentWidth - 10, 4, "F");
+          doc.setFillColor(barColor[0], barColor[1], barColor[2]);
+          doc.rect(margin, yPos - 3, barWidth, 4, "F");
+          yPos += 6;
+        });
+    }
+
+    // INSIGHTS & RECOMMENDATIONS
+    if (att.insights?.strongAreas?.length || att.insights?.weakAreas?.length || att.insights?.recommendations?.length) {
+      addSection("INSIGHTS & RECOMMENDATIONS");
+
+      if (att.insights?.strongAreas?.length > 0) {
+        addText(`Strong Areas:`, 10, true, [34, 197, 94]);
+        addText(`  ${att.insights.strongAreas.map(a => a.toUpperCase()).join(", ")}`);
+      }
+
+      if (att.insights?.weakAreas?.length > 0) {
+        addText(`Areas for Improvement:`, 10, true, [239, 68, 68]);
+        addText(`  ${att.insights.weakAreas.map(a => a.toUpperCase()).join(", ")}`);
+      }
+
+      if (att.insights?.recommendations?.length > 0) {
+        yPos += 2;
+        addText(`Recommendations:`, 10, true);
+        att.insights.recommendations.forEach((r, i) => {
+          addText(`  ${i + 1}. ${r}`, 9);
+        });
+      }
+    }
+
+    // VIDEO ANALYSIS
+    if (att.videoAnalysis) {
+      addSection("VIDEO ANALYSIS");
+
+      if (att.videoAnalysis.eye_contact && !("error" in att.videoAnalysis.eye_contact)) {
+        const ec = att.videoAnalysis.eye_contact as any;
+        addText(`Eye Contact: ${ec.eye_contact?.percentage ?? "—"}`, 10, true);
+        addText(`Look Away: ${ec.look_away?.percentage ?? "—"}`);
+        addText(`Duration: ${ec.video_duration ?? "—"}s`);
+      } else {
+        addText("Eye Contact: Error in analysis", 10, false, [239, 68, 68]);
+      }
+
+      yPos += 2;
+      if (att.videoAnalysis.sign_recognition && !("error" in att.videoAnalysis.sign_recognition)) {
+        const sr = att.videoAnalysis.sign_recognition as any;
+        addText(`Recognized Sign: ${(sr.recognized_sign ?? "None").toUpperCase()}`, 10, true);
+      } else {
+        addText("Sign Recognition: Error in analysis", 10, false, [239, 68, 68]);
+      }
+    }
+
+    // ML ANALYSIS
+    if (att.ml) {
+      addSection("MACHINE LEARNING ANALYSIS (SHAP)");
+      addText(`Predicted Score: ${Number(att.ml.predicted_score).toFixed(1)}%`, 10, true);
+      addText(`Base Value: ${Number(att.ml.base_value).toFixed(1)}`);
+    }
+
+    // FOOTER
+    yPos += 10;
+    doc.setFontSize(8);
+    doc.setTextColor(128, 128, 128);
+    doc.text(`Report generated: ${new Date().toLocaleString()}`, pageWidth / 2, yPos, { align: "center" });
+
+    // Save PDF
+    doc.save(`SignSight_Report_${userId}_Attempt${att.attemptNumber}_${att.level}.pdf`);
+  };
+
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-      {/* ALL AREAS */}
-      <div>
-        <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
-          All Areas
-        </p>
-        {Object.entries(areas).length > 0 ? (
-          Object.entries(areas).map(([area, data]) => (
-            <AreaBar
-              key={area}
-              area={area as Area}
-              percentage={data.percentage}
-              correct={data.correct}
-              total={data.total}
-            />
-          ))
-        ) : (
-          <span className="text-sm text-gray-600">No area data</span>
-        )}
+    <div className="space-y-4">
+      {/* Report Generation Button */}
+      <div className="flex justify-end">
+        <button
+          onClick={generateReport}
+          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white rounded-lg text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+        >
+          <span>📄</span>
+          Generate Report
+        </button>
       </div>
 
-      {/* INSIGHTS */}
-      <div>
-        <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
-          Insights
-        </p>
-        {att.insights?.weakAreas?.length > 0 && (
-          <p className="text-sm mb-1.5">
-            <span className="text-rose-400">⚠ Weak: </span>
-            <span className="text-gray-400 capitalize">
-              {att.insights.weakAreas.join(", ")}
-            </span>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {/* ALL AREAS */}
+        <div>
+          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
+            All Areas
           </p>
-        )}
-        {att.insights?.strongAreas?.length > 0 && (
-          <p className="text-sm mb-1.5">
-            <span className="text-emerald-400">✓ Strong: </span>
-            <span className="text-gray-400 capitalize">
-              {att.insights.strongAreas.join(", ")}
-            </span>
+          {Object.entries(areas).length > 0 ? (
+            Object.entries(areas).map(([area, data]) => (
+              <AreaBar
+                key={area}
+                area={area as Area}
+                percentage={data.percentage}
+                correct={data.correct}
+                total={data.total}
+              />
+            ))
+          ) : (
+            <span className="text-sm text-gray-600">No area data</span>
+          )}
+        </div>
+
+        {/* INSIGHTS */}
+        <div>
+          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
+            Insights
           </p>
-        )}
-        {att.insights?.recommendations?.length > 0 && (
-          <div className="mt-2 pt-2 border-t border-gray-700">
-            {att.insights.recommendations.map((r, i) => (
-              <p
-                key={i}
-                className="text-sm text-gray-500 py-1 flex gap-1.5 items-start"
-              >
-                <span className="text-violet-400 font-bold leading-none">
-                  ›
-                </span>{" "}
-                {r}
-              </p>
-            ))}
+          {att.insights?.weakAreas?.length > 0 && (
+            <p className="text-sm mb-1.5">
+              <span className="text-rose-400">⚠ Weak: </span>
+              <span className="text-gray-400 capitalize">
+                {att.insights.weakAreas.join(", ")}
+              </span>
+            </p>
+          )}
+          {att.insights?.strongAreas?.length > 0 && (
+            <p className="text-sm mb-1.5">
+              <span className="text-emerald-400">✓ Strong: </span>
+              <span className="text-gray-400 capitalize">
+                {att.insights.strongAreas.join(", ")}
+              </span>
+            </p>
+          )}
+          {att.insights?.recommendations?.length > 0 && (
+            <div className="mt-2 pt-2 border-t border-gray-700">
+              {att.insights.recommendations.map((r, i) => (
+                <p
+                  key={i}
+                  className="text-sm text-gray-500 py-1 flex gap-1.5 items-start"
+                >
+                  <span className="text-violet-400 font-bold leading-none">
+                    ›
+                  </span>{" "}
+                  {r}
+                </p>
+              ))}
+            </div>
+          )}
+          {!att.insights?.weakAreas?.length &&
+            !att.insights?.strongAreas?.length &&
+            !att.insights?.recommendations?.length && (
+              <span className="text-sm text-gray-600">No insights</span>
+            )}
+        </div>
+
+        {/* VIDEO ANALYSIS */}
+        {att.videoAnalysis && (
+          <div>
+            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
+              Video Analysis
+            </p>
+            <VideoDetail analysis={att.videoAnalysis} />
           </div>
         )}
-        {!att.insights?.weakAreas?.length &&
-          !att.insights?.strongAreas?.length &&
-          !att.insights?.recommendations?.length && (
-            <span className="text-sm text-gray-600">No insights</span>
-          )}
+
+        {/* ML / SHAP */}
+        {att.ml && (
+          <div>
+            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
+              ML (SHAP)
+            </p>
+            <p className="text-sm text-gray-400 mb-1">
+              Predicted:{" "}
+              <strong className="text-gray-200 font-mono">
+                {Number(att.ml.predicted_score).toFixed(1)}%
+              </strong>
+            </p>
+            <p className="text-sm text-gray-400">
+              Base value:{" "}
+              <strong className="text-gray-200 font-mono">
+                {Number(att.ml.base_value).toFixed(1)}
+              </strong>
+            </p>
+          </div>
+        )}
       </div>
-
-      {/* VIDEO ANALYSIS */}
-      {att.videoAnalysis && (
-        <div>
-          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
-            Video Analysis
-          </p>
-          <VideoDetail analysis={att.videoAnalysis} />
-        </div>
-      )}
-
-      {/* ML / SHAP */}
-      {att.ml && (
-        <div>
-          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
-            ML (SHAP)
-          </p>
-          <p className="text-sm text-gray-400 mb-1">
-            Predicted:{" "}
-            <strong className="text-gray-200 font-mono">
-              {Number(att.ml.predicted_score).toFixed(1)}%
-            </strong>
-          </p>
-          <p className="text-sm text-gray-400">
-            Base value:{" "}
-            <strong className="text-gray-200 font-mono">
-              {Number(att.ml.base_value).toFixed(1)}
-            </strong>
-          </p>
-        </div>
-      )}
     </div>
   );
 }
