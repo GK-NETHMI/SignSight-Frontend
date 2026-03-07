@@ -85,7 +85,7 @@ export default function LessonsHome() {
           <CategoryIntroModal
             category="colors"
             title="Colors"
-            introVideo="/lessons/Colors/Colors Intro.mp4"
+            introVideo="/lessons/Colors Intro.mp4"
             items={COLORS}
             onClose={() => setOpen(null)}
             onNext={(item) => nav(`/lessons/colors/${item.value}`)}
@@ -96,7 +96,7 @@ export default function LessonsHome() {
           <CategoryIntroModal
             category="food"
             title="Food"
-            introVideo="/lessons/Food/Food Items Intro.mp4"
+            introVideo="/lessons/Food Items Intro.mp4"
             items={FOOD}
             onClose={() => setOpen(null)}
             onNext={(item) => nav(`/lessons/food/${item.value}`)}
@@ -107,7 +107,7 @@ export default function LessonsHome() {
           <CategoryIntroModal
             category="numbers"
             title="Numbers"
-            introVideo="/lessons/Numbers/1.png" // optional intro
+            introVideo=""
             items={NUMBERS}
             onClose={() => setOpen(null)}
             onNext={(item) => nav(`/lessons/numbers/${item.value}`)}
