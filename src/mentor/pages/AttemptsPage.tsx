@@ -67,17 +67,16 @@ export default function AttemptsPage({ userId }: { userId: string }) {
                 key={f}
                 onClick={() => handleFilter(f)}
                 className={`
-                  px-3.5 py-1 rounded-full border text-xs font-medium transition-all duration-200 capitalize
-                  ${
-                    isActive
-                      ? f === "all"
+                  px-3.5 py-1 rounded-full border text-sm font-medium transition-all duration-200 capitalize
+                  ${isActive
+                    ? f === "all"
+                      ? "bg-blue-500/10 text-blue-400 border-blue-500/40"
+                      : f === "basic"
                         ? "bg-blue-500/10 text-blue-400 border-blue-500/40"
-                        : f === "basic"
-                          ? "bg-blue-500/10 text-blue-400 border-blue-500/40"
-                          : f === "intermediate"
-                            ? "bg-amber-500/10 text-amber-400 border-amber-500/40"
-                            : "bg-rose-500/10 text-rose-400 border-rose-500/40"
-                      : "border-gray-700 text-gray-500 bg-gray-800 hover:border-gray-600 hover:text-gray-300"
+                        : f === "intermediate"
+                          ? "bg-amber-500/10 text-amber-400 border-amber-500/40"
+                          : "bg-rose-500/10 text-rose-400 border-rose-500/40"
+                    : "border-gray-700 text-gray-500 bg-gray-800 hover:border-gray-600 hover:text-gray-300"
                   }
                 `}
               >
@@ -86,7 +85,7 @@ export default function AttemptsPage({ userId }: { userId: string }) {
             );
           })}
         </div>
-        <span className="text-xs text-gray-600 font-mono">
+        <span className="text-sm text-gray-600 font-mono">
           {total} attempt{total !== 1 ? "s" : ""}
         </span>
       </div>
@@ -97,7 +96,7 @@ export default function AttemptsPage({ userId }: { userId: string }) {
       ) : (
         <div className="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-base">
               <thead>
                 <tr className="border-b border-gray-700">
                   {[
@@ -112,7 +111,7 @@ export default function AttemptsPage({ userId }: { userId: string }) {
                   ].map((h) => (
                     <th
                       key={h}
-                      className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider px-4 py-2.5 whitespace-nowrap"
+                      className="text-left text-sm font-semibold text-gray-500 uppercase tracking-wider px-4 py-2.5 whitespace-nowrap"
                     >
                       {h}
                     </th>
@@ -124,7 +123,7 @@ export default function AttemptsPage({ userId }: { userId: string }) {
                   <tr>
                     <td
                       colSpan={8}
-                      className="text-center text-gray-600 text-sm py-12"
+                      className="text-center text-gray-600 text-base py-12"
                     >
                       No attempts found for this filter.
                     </td>
@@ -156,7 +155,7 @@ export default function AttemptsPage({ userId }: { userId: string }) {
                           }}
                         >
                           <td className="px-4 py-2.5">
-                            <span className="font-mono text-gray-400 text-xs">
+                            <span className="font-mono text-gray-400 text-sm">
                               {att.attemptNumber}
                             </span>
                           </td>
@@ -183,7 +182,7 @@ export default function AttemptsPage({ userId }: { userId: string }) {
                               {topAreas.map(([area, data]) => (
                                 <span
                                   key={area}
-                                  className="text-xs px-2 py-0.5 rounded-full bg-gray-700 text-gray-400 capitalize whitespace-nowrap"
+                                  className="text-sm px-2 py-0.5 rounded-full bg-gray-700 text-gray-400 capitalize whitespace-nowrap"
                                 >
                                   {area}{" "}
                                   <strong className="text-gray-200">
@@ -202,15 +201,15 @@ export default function AttemptsPage({ userId }: { userId: string }) {
                                 🎥
                               </span>
                             ) : (
-                              <span className="text-gray-600 text-xs">—</span>
+                              <span className="text-gray-600 text-sm">—</span>
                             )}
                           </td>
                           <td className="px-4 py-2.5">
-                            <span className="text-xs text-gray-500 whitespace-nowrap">
+                            <span className="text-sm text-gray-500 whitespace-nowrap">
                               {formatDate(getDateString(att.createdAt))}
                             </span>
                           </td>
-                          <td className="px-4 py-2.5 text-center text-gray-600 text-xs select-none">
+                          <td className="px-4 py-2.5 text-center text-gray-600 text-sm select-none">
                             {isOpen ? "▲" : "▼"}
                           </td>
                         </tr>
@@ -245,7 +244,7 @@ export default function AttemptsPage({ userId }: { userId: string }) {
 
             {paginationNumbers(page, totalPages).map((p, i) =>
               typeof p === "string" ? (
-                <span key={`e${i}`} className="text-gray-600 text-xs px-1">
+                <span key={`e${i}`} className="text-gray-600 text-sm px-1">
                   …
                 </span>
               ) : (
@@ -267,7 +266,7 @@ export default function AttemptsPage({ userId }: { userId: string }) {
             >
               Last »
             </PagBtn>
-            <span className="text-xs text-gray-600 ml-2 font-mono">
+            <span className="text-sm text-gray-600 ml-2 font-mono">
               Page {page} of {totalPages}
             </span>
           </div>
@@ -286,7 +285,7 @@ function DetailPanel({ attempt: att }: { attempt: AttemptDocument }) {
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
       {/* ALL AREAS */}
       <div>
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
+        <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
           All Areas
         </p>
         {Object.entries(areas).length > 0 ? (
@@ -300,17 +299,17 @@ function DetailPanel({ attempt: att }: { attempt: AttemptDocument }) {
             />
           ))
         ) : (
-          <span className="text-xs text-gray-600">No area data</span>
+          <span className="text-sm text-gray-600">No area data</span>
         )}
       </div>
 
       {/* INSIGHTS */}
       <div>
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
+        <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
           Insights
         </p>
         {att.insights?.weakAreas?.length > 0 && (
-          <p className="text-xs mb-1.5">
+          <p className="text-sm mb-1.5">
             <span className="text-rose-400">⚠ Weak: </span>
             <span className="text-gray-400 capitalize">
               {att.insights.weakAreas.join(", ")}
@@ -318,7 +317,7 @@ function DetailPanel({ attempt: att }: { attempt: AttemptDocument }) {
           </p>
         )}
         {att.insights?.strongAreas?.length > 0 && (
-          <p className="text-xs mb-1.5">
+          <p className="text-sm mb-1.5">
             <span className="text-emerald-400">✓ Strong: </span>
             <span className="text-gray-400 capitalize">
               {att.insights.strongAreas.join(", ")}
@@ -330,7 +329,7 @@ function DetailPanel({ attempt: att }: { attempt: AttemptDocument }) {
             {att.insights.recommendations.map((r, i) => (
               <p
                 key={i}
-                className="text-xs text-gray-500 py-1 flex gap-1.5 items-start"
+                className="text-sm text-gray-500 py-1 flex gap-1.5 items-start"
               >
                 <span className="text-violet-400 font-bold leading-none">
                   ›
@@ -343,14 +342,14 @@ function DetailPanel({ attempt: att }: { attempt: AttemptDocument }) {
         {!att.insights?.weakAreas?.length &&
           !att.insights?.strongAreas?.length &&
           !att.insights?.recommendations?.length && (
-            <span className="text-xs text-gray-600">No insights</span>
+            <span className="text-sm text-gray-600">No insights</span>
           )}
       </div>
 
       {/* VIDEO ANALYSIS */}
       {att.videoAnalysis && (
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
+          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
             Video Analysis
           </p>
           <VideoDetail analysis={att.videoAnalysis} />
@@ -360,16 +359,16 @@ function DetailPanel({ attempt: att }: { attempt: AttemptDocument }) {
       {/* ML / SHAP */}
       {att.ml && (
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
+          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
             ML (SHAP)
           </p>
-          <p className="text-xs text-gray-400 mb-1">
+          <p className="text-sm text-gray-400 mb-1">
             Predicted:{" "}
             <strong className="text-gray-200 font-mono">
               {Number(att.ml.predicted_score).toFixed(1)}%
             </strong>
           </p>
-          <p className="text-xs text-gray-400">
+          <p className="text-sm text-gray-400">
             Base value:{" "}
             <strong className="text-gray-200 font-mono">
               {Number(att.ml.base_value).toFixed(1)}
@@ -394,7 +393,7 @@ function VideoDetail({ analysis }: { analysis: VideoAnalysis }) {
   const srData = sr && !hasSrError ? (sr as any) : null;
 
   return (
-    <div className="text-xs text-gray-400 flex flex-col gap-1">
+    <div className="text-sm text-gray-400 flex flex-col gap-1">
       {hasEcError && <p className="text-rose-400">👀 Eye contact: Error</p>}
       {ecData && (
         <>
@@ -448,11 +447,10 @@ function PagBtn({
       onClick={onClick}
       disabled={disabled}
       className={`
-        px-2.5 py-1 rounded text-xs font-medium border transition-all duration-150
-        ${
-          active
-            ? "bg-blue-500 border-blue-500 text-white"
-            : "border-gray-700 text-gray-400 bg-gray-800 hover:border-gray-600 hover:text-gray-200"
+        px-2.5 py-1 rounded text-sm font-medium border transition-all duration-150
+        ${active
+          ? "bg-blue-500 border-blue-500 text-white"
+          : "border-gray-700 text-gray-400 bg-gray-800 hover:border-gray-600 hover:text-gray-200"
         }
         disabled:opacity-30 disabled:cursor-not-allowed
       `}

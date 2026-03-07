@@ -30,11 +30,11 @@ function BarTooltip({ active, payload }: any) {
   const d = payload[0].payload as { area: string; avg: number };
   return (
     <div className="bg-gray-900 border border-gray-600 rounded-lg px-3.5 py-2.5 shadow-lg">
-      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">
+      <p className="text-sm text-gray-500 uppercase tracking-wide mb-1">
         {d.area}
       </p>
       <p
-        className="text-sm font-mono font-semibold"
+        className="text-base font-mono font-semibold"
         style={{ color: AREA_COLORS[d.area as Area] }}
       >
         {d.avg}%
@@ -49,9 +49,9 @@ function PieTooltip({ active, payload }: any) {
   const c = ASSESS_COLORS[d.name as Assessment];
   return (
     <div className="bg-gray-900 border border-gray-600 rounded-lg px-3.5 py-2.5 shadow-lg">
-      <p className="text-xs text-gray-500 mb-0.5">{d.name}</p>
+      <p className="text-sm text-gray-500 mb-0.5">{d.name}</p>
       <p
-        className="text-sm font-mono font-semibold"
+        className="text-base font-mono font-semibold"
         style={{ color: c?.hex ?? "#fff" }}
       >
         {d.value} attempts
@@ -172,7 +172,7 @@ export default function OverviewPage({ summary }: { summary: UserSummary }) {
                 dataKey="area"
                 tick={{
                   fill: "#6b7280",
-                  fontSize: 11,
+                  fontSize: 13,
 
                 }}
                 axisLine={false}
@@ -181,7 +181,7 @@ export default function OverviewPage({ summary }: { summary: UserSummary }) {
               <YAxis
                 domain={[0, 100]}
                 tickFormatter={(v: number) => `${v}%`}
-                tick={{ fill: "#6b7280", fontSize: 11 }}
+                tick={{ fill: "#6b7280", fontSize: 13 }}
                 axisLine={false}
                 tickLine={false}
               />
@@ -244,7 +244,7 @@ export default function OverviewPage({ summary }: { summary: UserSummary }) {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* WEAK AREAS */}
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-5">
-          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+          <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-rose-500 inline-block" />{" "}
             Areas Needing Improvement
           </h4>
@@ -257,13 +257,13 @@ export default function OverviewPage({ summary }: { summary: UserSummary }) {
                 <span className="text-sm text-gray-300 capitalize">
                   {w.area}
                 </span>
-                <span className="text-xs font-mono font-semibold text-rose-400">
+                <span className="text-sm font-mono font-semibold text-rose-400">
                   {w.avg}%
                 </span>
               </div>
             ))
           ) : (
-            <p className="text-xs text-gray-600 pt-2">
+            <p className="text-sm text-gray-600 pt-2">
               All areas performing well 🎉
             </p>
           )}
@@ -271,7 +271,7 @@ export default function OverviewPage({ summary }: { summary: UserSummary }) {
 
         {/* STRONG AREAS */}
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-5">
-          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+          <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />{" "}
             Strong Areas
           </h4>
@@ -284,13 +284,13 @@ export default function OverviewPage({ summary }: { summary: UserSummary }) {
                 <span className="text-sm text-gray-300 capitalize">
                   {s.area}
                 </span>
-                <span className="text-xs font-mono font-semibold text-emerald-400">
+                <span className="text-sm font-mono font-semibold text-emerald-400">
                   {s.avg}%
                 </span>
               </div>
             ))
           ) : (
-            <p className="text-xs text-gray-600 pt-2">
+            <p className="text-sm text-gray-600 pt-2">
               Keep practising to build strong areas
             </p>
           )}
@@ -298,7 +298,7 @@ export default function OverviewPage({ summary }: { summary: UserSummary }) {
 
         {/* RECOMMENDATIONS */}
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-5">
-          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+          <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-violet-500 inline-block" />{" "}
             Recommendations
           </h4>
@@ -306,7 +306,7 @@ export default function OverviewPage({ summary }: { summary: UserSummary }) {
             latest.insights.recommendations.map((r, i) => (
               <div
                 key={i}
-                className="text-xs text-gray-400 py-1.5 border-b border-gray-700 last:border-0 flex gap-2 items-start"
+                className="text-sm text-gray-400 py-1.5 border-b border-gray-700 last:border-0 flex gap-2 items-start"
               >
                 <span className="text-violet-400 font-bold leading-none">
                   ›
@@ -315,7 +315,7 @@ export default function OverviewPage({ summary }: { summary: UserSummary }) {
               </div>
             ))
           ) : (
-            <p className="text-xs text-gray-600 pt-2">
+            <p className="text-sm text-gray-600 pt-2">
               No recommendations available yet
             </p>
           )}

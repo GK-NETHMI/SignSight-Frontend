@@ -58,17 +58,17 @@ export default function MentorDashboard() {
       <aside className="w-56 bg-gray-800 border-r border-gray-700 flex flex-col shrink-0">
         {/* logo */}
         <div className="p-5 border-b border-gray-700 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center text-lg">
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center text-xl">
             🤚
           </div>
-          <h1 className="text-base font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Sign<span className="text-teal-400">Sight</span>
           </h1>
         </div>
 
         {/* nav */}
         <nav className="flex-1 py-3">
-          <p className="text-xs font-semibold text-gray-600 uppercase tracking-widest px-4 mb-2">
+          <p className="text-[11px] font-semibold text-gray-600 uppercase tracking-widest px-4 mb-2">
             Navigation
           </p>
           {NAV_ITEMS.map((item) => {
@@ -78,11 +78,10 @@ export default function MentorDashboard() {
                 key={item.id}
                 onClick={() => setActiveNav(item.id)}
                 className={`
-                  w-full flex items-center gap-2.5 px-4 py-2 text-xs font-medium transition-all duration-150 border-l-2
-                  ${
-                    isActive
-                      ? "bg-gray-700/60 text-blue-400 border-blue-500"
-                      : "text-gray-500 border-transparent hover:bg-gray-700/30 hover:text-gray-300"
+                  w-full flex items-center gap-2.5 px-4 py-2 text-sm font-medium transition-all duration-150 border-l-2
+                  ${isActive
+                    ? "bg-gray-700/60 text-blue-400 border-blue-500"
+                    : "text-gray-500 border-transparent hover:bg-gray-700/30 hover:text-gray-300"
                   }
                 `}
               >
@@ -95,7 +94,7 @@ export default function MentorDashboard() {
 
         {/* footer info */}
         <div className="p-4 border-t border-gray-700">
-          <p className="text-xs text-gray-600">
+          <p className="text-sm text-gray-600">
             👤 {users.length} student{users.length !== 1 ? "s" : ""} enrolled
           </p>
         </div>
@@ -106,12 +105,12 @@ export default function MentorDashboard() {
         {/* ── TOPBAR ── */}
         <header className="flex items-center justify-between mb-6 flex-wrap gap-4">
           <div>
-            <h2 className="text-lg font-semibold tracking-tight text-gray-100">
+            <h2 className="text-2xl font-semibold tracking-tight text-gray-100">
               {activeNav === "overview" && "Student Overview"}
               {activeNav === "level" && "Level Breakdown"}
               {activeNav === "attempts" && "Attempt History"}
             </h2>
-            <p className="text-xs text-gray-500 mt-0.5">
+            <p className="text-sm text-gray-500 mt-0.5">
               {activeNav === "overview" &&
                 "Summary, area performance & insights"}
               {activeNav === "level" &&
@@ -126,7 +125,7 @@ export default function MentorDashboard() {
             <select
               value={effectiveUserId ?? ""}
               onChange={(e) => setSelectedUserId(e.target.value)}
-              className="appearance-none bg-gray-800 border border-gray-600 rounded-lg px-3.5 py-2 pr-8 text-xs text-gray-200 cursor-pointer focus:outline-none focus:border-blue-500 transition-colors"
+              className="appearance-none bg-gray-800 border border-gray-600 rounded-lg px-3.5 py-2 pr-8 text-sm text-gray-200 cursor-pointer focus:outline-none focus:border-blue-500 transition-colors"
             >
               {users.map((u) => (
                 <option

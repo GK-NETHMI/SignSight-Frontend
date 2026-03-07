@@ -80,13 +80,13 @@ export function StatCard({ label, value, sub, accentColor }: StatCardProps) {
     <div
       className={`bg-gray-800 border border-gray-700 rounded-xl p-5 border-t-2 ${accentColor} transition-all duration-200 hover:-translate-y-0.5`}
     >
-      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+      <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
         {label}
       </p>
-      <p className="text-2xl font-bold text-gray-100 font-mono leading-tight">
+      <p className="text-3xl font-bold text-gray-100 font-mono leading-tight">
         {value}
       </p>
-      {sub && <p className="text-xs text-gray-500 mt-1.5">{sub}</p>}
+      {sub && <p className="text-sm text-gray-500 mt-1.5">{sub}</p>}
     </div>
   );
 }
@@ -98,7 +98,7 @@ export function LevelBadge({ level }: { level: Level }) {
   const c = LEVEL_COLORS[level];
   return (
     <span
-      className={`inline-block ${c.bg} ${c.text} text-xs font-semibold px-2.5 py-0.5 rounded-full capitalize`}
+      className={`inline-block ${c.bg} ${c.text} text-sm font-semibold px-2.5 py-0.5 rounded-full capitalize`}
     >
       {level}
     </span>
@@ -113,11 +113,11 @@ export function AssessmentBadge({
 }: {
   assessment: Assessment | null;
 }) {
-  if (!assessment) return <span className="text-gray-600 text-xs">—</span>;
+  if (!assessment) return <span className="text-gray-600 text-sm">—</span>;
   const c = ASSESS_COLORS[assessment];
   return (
     <span
-      className={`inline-block ${c.bg} ${c.text} text-xs font-semibold px-2.5 py-0.5 rounded-full`}
+      className={`inline-block ${c.bg} ${c.text} text-sm font-semibold px-2.5 py-0.5 rounded-full`}
     >
       {assessment}
     </span>
@@ -139,8 +139,8 @@ export function AreaBar({ area, percentage, correct, total }: AreaBarProps) {
   return (
     <div className="mb-2.5">
       <div className="flex justify-between items-center mb-1">
-        <span className="text-xs text-gray-400 capitalize">{area}</span>
-        <span className="text-xs font-mono font-semibold" style={{ color }}>
+        <span className="text-sm text-gray-400 capitalize">{area}</span>
+        <span className="text-sm font-mono font-semibold" style={{ color }}>
           {correct !== undefined && total !== undefined
             ? `${correct}/${total} · `
             : ""}
@@ -228,9 +228,9 @@ export function Card({ title, badge, children, className = "" }: CardProps) {
       className={`bg-gray-800 border border-gray-700 rounded-xl p-5 ${className}`}
     >
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-semibold text-gray-100">{title}</h3>
+        <h3 className="text-base font-semibold text-gray-100">{title}</h3>
         {badge && (
-          <span className="text-xs font-semibold text-gray-500 bg-gray-700 px-2.5 py-0.5 rounded-full">
+          <span className="text-sm font-semibold text-gray-500 bg-gray-700 px-2.5 py-0.5 rounded-full">
             {badge}
           </span>
         )}

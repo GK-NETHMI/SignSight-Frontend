@@ -35,9 +35,9 @@ function AreaTooltip({ active, payload }: any) {
   const d = payload[0].payload as { area: string; avg: number };
   return (
     <div className="bg-gray-900 border border-gray-600 rounded-lg px-3.5 py-2.5 shadow-lg">
-      <p className="text-xs text-gray-500 capitalize mb-0.5">{d.area}</p>
+      <p className="text-sm text-gray-500 capitalize mb-0.5">{d.area}</p>
       <p
-        className="text-sm font-mono font-semibold"
+        className="text-base font-mono font-semibold"
         style={{ color: AREA_COLORS[d.area as Area] }}
       >
         {d.avg}%
@@ -50,8 +50,8 @@ function LineTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
     <div className="bg-gray-900 border border-gray-600 rounded-lg px-3.5 py-2.5 shadow-lg">
-      <p className="text-xs text-gray-500 mb-1">Attempt #{label}</p>
-      <p className="text-sm font-mono font-semibold text-gray-100">
+      <p className="text-sm text-gray-500 mb-1">Attempt #{label}</p>
+      <p className="text-base font-mono font-semibold text-gray-100">
         {payload[0].value}%
       </p>
     </div>
@@ -63,9 +63,9 @@ function PieTooltip({ active, payload }: any) {
   const d = payload[0].payload as { name: string; value: number };
   return (
     <div className="bg-gray-900 border border-gray-600 rounded-lg px-3.5 py-2.5 shadow-lg">
-      <p className="text-xs text-gray-500 mb-0.5">{d.name}</p>
+      <p className="text-sm text-gray-500 mb-0.5">{d.name}</p>
       <p
-        className="text-sm font-mono font-semibold"
+        className="text-base font-mono font-semibold"
         style={{ color: ASSESS_COLORS[d.name as Assessment]?.hex ?? "#fff" }}
       >
         {d.value}
@@ -111,11 +111,10 @@ export default function LevelViewPage({ summary }: { summary: UserSummary }) {
               key={lvl}
               onClick={() => setActiveLevel(lvl)}
               className={`
-                px-4 py-1.5 rounded-full border text-sm font-medium transition-all duration-200 capitalize
-                ${
-                  isActive
-                    ? `${c.bg} ${c.text} ${c.border}`
-                    : "border-gray-700 text-gray-400 bg-gray-800 hover:border-gray-600 hover:text-gray-300"
+                px-4 py-1.5 rounded-full border text-base font-medium transition-all duration-200 capitalize
+                ${isActive
+                  ? `${c.bg} ${c.text} ${c.border}`
+                  : "border-gray-700 text-gray-400 bg-gray-800 hover:border-gray-600 hover:text-gray-300"
                 }
               `}
             >
@@ -124,7 +123,7 @@ export default function LevelViewPage({ summary }: { summary: UserSummary }) {
               {lvl === "advanced" && "🔴 "}
               {lvl}
               {ls.attemptCount > 0 && (
-                <span className="opacity-50 ml-1.5 text-xs">
+                <span className="opacity-50 ml-1.5 text-sm">
                   ({ls.attemptCount})
                 </span>
               )}
@@ -205,8 +204,8 @@ export default function LevelViewPage({ summary }: { summary: UserSummary }) {
                     dataKey="area"
                     tick={{
                       fill: "#6b7280",
-                      fontSize: 11,
-               
+                      fontSize: 13,
+
                       textAnchor: "middle",
                     }}
                     axisLine={false}
@@ -215,7 +214,7 @@ export default function LevelViewPage({ summary }: { summary: UserSummary }) {
                   <YAxis
                     domain={[0, 100]}
                     tickFormatter={(v: number) => `${v}%`}
-                    tick={{ fill: "#6b7280", fontSize: 11 }}
+                    tick={{ fill: "#6b7280", fontSize: 13 }}
                     axisLine={false}
                     tickLine={false}
                   />
@@ -246,14 +245,14 @@ export default function LevelViewPage({ summary }: { summary: UserSummary }) {
                   />
                   <XAxis
                     dataKey="attempt"
-                    tick={{ fill: "#6b7280", fontSize: 11 }}
+                    tick={{ fill: "#6b7280", fontSize: 13 }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <YAxis
                     domain={[0, 100]}
                     tickFormatter={(v: number) => `${v}%`}
-                    tick={{ fill: "#6b7280", fontSize: 11 }}
+                    tick={{ fill: "#6b7280", fontSize: 13 }}
                     axisLine={false}
                     tickLine={false}
                   />
@@ -319,7 +318,7 @@ export default function LevelViewPage({ summary }: { summary: UserSummary }) {
                   </PieChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="flex items-center justify-center h-40 text-gray-600 text-xs">
+                <div className="flex items-center justify-center h-40 text-gray-600 text-sm">
                   No data
                 </div>
               )}
@@ -331,7 +330,7 @@ export default function LevelViewPage({ summary }: { summary: UserSummary }) {
                 {ls.videoAttempts === 0 ? (
                   <div className="flex flex-col items-center justify-center py-10 text-gray-600">
                     <span className="text-3xl mb-2 opacity-30">🎥</span>
-                    <p className="text-xs">No video submissions yet</p>
+                    <p className="text-sm">No video submissions yet</p>
                   </div>
                 ) : (
                   <div className="flex flex-col gap-3">
@@ -352,7 +351,7 @@ export default function LevelViewPage({ summary }: { summary: UserSummary }) {
                       value="Enabled"
                       color="text-blue-400"
                     />
-                    <div className="mt-3 bg-gray-700/50 rounded-lg px-3 py-2.5 text-xs text-gray-500 leading-relaxed">
+                    <div className="mt-3 bg-gray-700/50 rounded-lg px-3 py-2.5 text-sm text-gray-500 leading-relaxed">
                       Video analysis includes{" "}
                       <span className="text-gray-300 font-medium">
                         eye contact detection
@@ -391,10 +390,10 @@ function VideoRow({
 }) {
   return (
     <div className="flex items-center justify-between py-2 border-b border-gray-700 last:border-0">
-      <span className="text-xs text-gray-400">
+      <span className="text-sm text-gray-400">
         {icon} {label}
       </span>
-      <span className={`text-xs font-mono font-semibold ${color}`}>
+      <span className={`text-sm font-mono font-semibold ${color}`}>
         {value}
       </span>
     </div>
