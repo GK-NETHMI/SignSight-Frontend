@@ -16,7 +16,7 @@ import {
 // angry: https://www.youtube.com/embed/0yBnIUX0QAE (placeholder for now)
 const videos = [
   "https://www.youtube.com/embed/c5YdpZjW-dc",
-  "https://www.youtube.com/embed/lTxn2BuqyzU",
+  "https://www.youtube.com/embed/ztLUaL3xQEk?list=RDztLUaL3xQEk&start_radio=1",
   "https://www.youtube.com/embed/KGqBfyQFG_g?list=RDKGqBfyQFG_g&start_radio=1",
 ];
 
