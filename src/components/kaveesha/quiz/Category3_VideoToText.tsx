@@ -30,6 +30,9 @@ export default function Category3_VideoToText({
     );
   }
 
+  // Check if video is a YouTube URL or local file
+  const isYouTube = question.question_video?.includes('youtube.com') || question.question_video?.includes('youtu.be');
+
   return (
     <div className="h-[100dvh] flex flex-col bg-gradient-to-br from-peach via-orange-100 to-pink-100">
       <div className="flex-1 flex items-center px-6">
@@ -39,7 +42,20 @@ export default function Category3_VideoToText({
             <p className="text-center text-sm text-gray-600 mb-3">
               Watch the sign and choose the correct meaning
             </p>
-            <YoutubePlayer url={question.question_video} />
+            {isYouTube ? (
+              <YoutubePlayer url={question.question_video} />
+            ) : (
+              <div className="w-full aspect-video rounded-3xl overflow-hidden bg-black">
+                <video
+                  src={question.question_video}
+                  controls
+                  className="w-full h-full object-contain"
+                  preload="metadata"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            )}
           </div>
 
           {/* OPTIONS */}

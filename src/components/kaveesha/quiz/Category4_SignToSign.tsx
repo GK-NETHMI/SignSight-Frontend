@@ -124,6 +124,9 @@ export default function Category4_SignToSign({
 
   /* ================= UI ================= */
 
+  // Check if video is a YouTube URL or local file
+  const isYouTube = question.question_video?.includes('youtube.com') || question.question_video?.includes('youtu.be');
+
   return (
     <div className="min-h-[100dvh] bg-gradient-to-br from-peach via-orange-100 to-pink-100 px-6 py-8">
       <h2 className="text-center text-lg font-bold text-gray-800 mb-6">
@@ -133,7 +136,20 @@ export default function Category4_SignToSign({
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* LEFT */}
         <div className="bg-white/80 rounded-3xl shadow-xl p-5">
-          <YoutubePlayer url={question.question_video} />
+          {isYouTube ? (
+            <YoutubePlayer url={question.question_video} />
+          ) : (
+            <div className="w-full aspect-video rounded-3xl overflow-hidden bg-black">
+              <video
+                src={question.question_video}
+                controls
+                className="w-full h-full object-contain"
+                preload="metadata"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          )}
         </div>
 
         {/* RIGHT */}
