@@ -408,9 +408,12 @@ function DetailPanel({ attempt: att, userId }: { attempt: AttemptDocument; userI
       yPos += 2;
       if (att.videoAnalysis.sign_recognition && !("error" in att.videoAnalysis.sign_recognition)) {
         const sr = att.videoAnalysis.sign_recognition as any;
-        addText(`Recognized Sign: ${(sr.recognized_sign ?? "None").toUpperCase()}`, 10, true);
+        addText(`Recognized Sign: ${(sr.answer ?? sr.recognized_sign ?? "None").toUpperCase()}`, 10, true);
+        if (sr.confidence) {
+          addText(`Confidence: ${(sr.confidence * 100).toFixed(0)}%`);
+        }
       } else {
-        addText("Sign Recognition: Error in analysis", 10, false, [239, 68, 68]);
+        addText("Sign Recognition: Not available", 10, false, [239, 68, 68]);
       }
     }
 
@@ -576,15 +579,27 @@ function VideoDetail({ analysis }: { analysis: VideoAnalysis }) {
       {hasSrError && (
         <p className="text-rose-400 mt-1">🤚 Sign recognition: Error</p>
       )}
-      {srData?.recognized_sign && (
-        <p className="mt-1">
-          🤚 Sign:{" "}
-          <strong className="text-blue-400 capitalize">
-            {srData.recognized_sign}
-          </strong>
+      {srData && (
+        <>
+          <p className="mt-1">
+            🤚 Sign:{" "}
+            <strong className="text-blue-400 capitalize">
+              {srData.answer ?? srData.recognized_sign ?? "None"}
+            </strong>
+          </p>
+          {srData.confidence && (
+            <p className="opacity-60">
+              Confidence: {(srData.confidence * 100).toFixed(0)}%
+            </p>
+          )}
+        </>
+      )}
+      {ecData?.cheating_events?.count > 0 && (
+        <p className="text-amber-400 mt-1">
+          ⚠ Look-away events: {ecData.cheating_events.count}
         </p>
       )}
-      {!ecData && !hasEcError && !srData?.recognized_sign && !hasSrError && (
+      {!ecData && !hasEcError && !srData && !hasSrError && (
         <p className="text-gray-600">No detailed results</p>
       )}
     </div>
