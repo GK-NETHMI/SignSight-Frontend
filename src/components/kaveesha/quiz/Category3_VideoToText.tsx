@@ -40,7 +40,7 @@ export default function Category3_VideoToText({
           {/* VIDEO */}
           <div className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-lg p-4">
             <p className="text-center text-sm text-gray-600 mb-3">
-              Watch the sign and choose the correct meaning
+              Watch the sign and choose the correct answer
             </p>
             {isYouTube ? (
               <YoutubePlayer url={question.question_video} />
