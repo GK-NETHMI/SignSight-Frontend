@@ -20,7 +20,7 @@ export default function Navbar() {
             <span className="text-2xl">😊</span>
           </div>
           <h1 className="text-white text-2xl font-extrabold tracking-wide">
-            EmotiSense
+            SignSight
           </h1>
         </div>
 
