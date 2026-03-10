@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { MENTOR_BASE_URI } from "../../config/CONFIG";
+import Toast from "../../components/kaveesha/Toast";
+import { useToast } from "../../hooks/useToast";
 
 export default function AdminDashboard() {
   const [mentors, setMentors] = useState<any[]>([]);
   const [users, setUsers] = useState<any[]>([]);
-  const [selectedUsers, setSelectedUsers] = useState<Record<string, string[]>>(
-    {},
-  );
+  const [selectedUsers, setSelectedUsers] = useState<Record<string, string[]>>({});
   const [savingMentor, setSavingMentor] = useState<string | null>(null);
+  const { toast, showToast, hideToast } = useToast();
 
   useEffect(() => {
     fetchData();
@@ -51,10 +52,10 @@ export default function AdminDashboard() {
         userIds: selectedUsers[mentorId] || [],
       });
 
-      alert("Saved successfully ✅");
+      showToast("Saved successfully!", "success");
       fetchData();
     } catch (err: any) {
-      alert(err.response?.data?.error || "Save failed");
+      showToast(err.response?.data?.error || "Save failed", "error");
     } finally {
       setSavingMentor(null);
     }
@@ -62,6 +63,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 p-8">
+      {toast && <Toast key={toast.id} message={toast.message} type={toast.type} onClose={hideToast} />}
       <h1 className="text-3xl font-extrabold mb-8 text-center text-gray-800">
         Admin Dashboard
       </h1>

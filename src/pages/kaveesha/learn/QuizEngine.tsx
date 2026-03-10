@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Toast from "../../../components/kaveesha/Toast";
+import { useToast } from "../../../hooks/useToast";
 
 import Category1_MCQ from "../../../components/kaveesha/quiz/Category1_MCQ";
 import Category2_TextToVideo from "../../../components/kaveesha/quiz/Category2_TextToVideo";
@@ -53,6 +55,7 @@ export default function QuizEngine() {
 
   const { level } = useParams();
   const navigate = useNavigate();
+  const { toast, showToast, hideToast } = useToast();
   const [data, setData] = useState<any>(null);
   const [catIndex, setCatIndex] = useState(0);
   const [qIndex, setQIndex] = useState(0);
@@ -68,8 +71,8 @@ export default function QuizEngine() {
   useEffect(() => {
     // Check if student is logged in
     if (!studentName) {
-      alert("Please login first");
-      navigate("/student/login");
+      showToast("Please login first 🔒", "info");
+      setTimeout(() => navigate("/student/login"), 1500);
       return;
     }
 
@@ -155,6 +158,7 @@ export default function QuizEngine() {
 
   return (
     <>
+      {toast && <Toast key={toast.id} message={toast.message} type={toast.type} onClose={hideToast} />}
       {isLoading && <FullScreenLoader />}
 
       <GlassPage>

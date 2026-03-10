@@ -4,24 +4,25 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import Toast from "../../components/kaveesha/Toast";
+import { useToast } from "../../hooks/useToast";
 
 export default function MentorLogin() {
   const nav = useNavigate();
+  const { toast, showToast, hideToast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleLogin() {
     try {
-      setError("");
       setLoading(true);
-
       await signInWithEmailAndPassword(auth, email, password);
       localStorage.setItem("mentorEmail", email);
-      nav("/mentorDash");
+      showToast("Welcome back! 🎉", "success");
+      setTimeout(() => nav("/mentorDash"), 900);
     } catch (err: any) {
-      setError(getFirebaseErrorMessage(err));
+      showToast(getFirebaseErrorMessage(err), "error");
     } finally {
       setLoading(false);
     }
@@ -54,6 +55,7 @@ export default function MentorLogin() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-peach via-orange-100 to-pink-100">
+      {toast && <Toast key={toast.id} message={toast.message} type={toast.type} onClose={hideToast} />}
       <Navbar />
 
       <section className="relative max-w-xl mx-auto px-4 py-20">
@@ -106,12 +108,6 @@ export default function MentorLogin() {
                 {loading ? <Loader /> : "Login as Mentor 🚀"}
               </PrimaryButton>
             </div>
-            {error && (
-              <div className="bg-red-100 border border-red-300 text-red-700 px-4 py-2 rounded-xl text-center text-sm">
-                {error}
-              </div>
-            )}
-
             <p className="text-center text-sm text-gray-600 mt-4">
               New mentor?{" "}
               <span

@@ -12,6 +12,8 @@ import {
     formatDate,
     AREA_COLORS,
 } from "../../mentor/components/SharedComponents";
+import Toast from "../../components/kaveesha/Toast";
+import { useToast } from "../../hooks/useToast";
 
 // Helper to extract date string from either format
 const getDateString = (
@@ -41,6 +43,7 @@ const EMOJI_MAP: Record<string, string> = {
    ============================================================ */
 export default function StudentAttemptsPage() {
     const navigate = useNavigate();
+    const { toast, showToast, hideToast } = useToast();
     const [levelFilter, setLevelFilter] = useState<Level | "all">("all");
     const [page, setPage] = useState(1);
     const [expanded, setExpanded] = useState<number | null>(null);
@@ -49,8 +52,8 @@ export default function StudentAttemptsPage() {
     useEffect(() => {
         const studentName = localStorage.getItem("studentName");
         if (!studentName) {
-            alert("Please login first");
-            navigate("/student/login");
+            showToast("Please login first 🔒", "info");
+            setTimeout(() => navigate("/student/login"), 1500);
         }
     }, [navigate]);
 
@@ -69,6 +72,7 @@ export default function StudentAttemptsPage() {
     // --------------------------------------------------------
     return (
         <div className="min-h-screen bg-gray-900 text-gray-100 p-8">
+            {toast && <Toast key={toast.id} message={toast.message} type={toast.type} onClose={hideToast} />}
             {/* HEADER */}
             <div className="mb-8 flex items-center justify-between">
                 <div>

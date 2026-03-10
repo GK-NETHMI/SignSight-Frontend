@@ -5,22 +5,23 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword, deleteUser } from "firebase/auth";
 import { auth } from "../../firebase";
 import axios from "axios";
+import Toast from "../../components/kaveesha/Toast";
+import { useToast } from "../../hooks/useToast";
 
 export default function StudentSignup() {
   const nav = useNavigate();
+  const { toast, showToast, hideToast } = useToast();
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSignup() {
     let firebaseUser = null;
     try {
-      setError("");
       setLoading(true);
 
       // Step 1: Firebase Auth
@@ -28,7 +29,7 @@ export default function StudentSignup() {
       firebaseUser = userCred.user;
 
       // Step 2: Save to MongoDB
-      const { data: studentData } = await axios.post("/api/students", {
+      await axios.post("/api/students", {
         username,
         name,
         email,
@@ -37,21 +38,15 @@ export default function StudentSignup() {
         firebaseUid: firebaseUser.uid,
       });
 
-      // Step 3: Set session (same as MentorSignUp)
-      localStorage.clear();
-      localStorage.setItem("studentName", studentData.username);
-      localStorage.setItem("studentUserId", studentData._id);
-      localStorage.setItem("studentFullName", studentData.name);
-      localStorage.setItem("studentEmail", studentData.email);
-
-      nav("/student/landing");
+      showToast("Account created successfully! 🎉", "success");
+      setTimeout(() => nav("/student/login"), 900);
     } catch (err: any) {
       // If Firebase Auth succeeded but MongoDB failed, delete the auth user
       // so the student can retry without getting "email already in use"
       if (firebaseUser) {
         try { await deleteUser(firebaseUser); } catch (_) {}
       }
-      setError(getErrorMessage(err));
+      showToast(getErrorMessage(err), "error");
     } finally {
       setLoading(false);
     }
@@ -88,6 +83,7 @@ export default function StudentSignup() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-peach via-orange-100 to-pink-100">
+      {toast && <Toast key={toast.id} message={toast.message} type={toast.type} onClose={hideToast} />}
       <Navbar />
 
       <section className="relative max-w-xl mx-auto px-4 py-8 pb-20">
@@ -199,12 +195,6 @@ export default function StudentSignup() {
                 {loading ? <Loader /> : "Create Student Account ✨"}
               </PrimaryButton>
             </div>
-
-            {error && (
-              <div className="bg-red-100 border border-red-300 text-red-700 px-4 py-2 rounded-xl text-center text-sm">
-                {error}
-              </div>
-            )}
 
             <p className="text-center text-sm text-gray-600 mt-4">
               Already a Student?{" "}
