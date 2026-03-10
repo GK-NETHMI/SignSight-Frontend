@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://127.0.0.1:5050", // ✅ FORCE IPv4
+        target: "http://127.0.0.1:5050",
         changeOrigin: true,
         secure: false,
       },

@@ -3,8 +3,8 @@ import PrimaryButton from "../../components/kaveesha/PrimaryButton";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { query, collection, where, getDocs } from "firebase/firestore";
-import { auth, db } from "../../firebase";
+import { auth } from "../../firebase";
+import axios from "axios";
 
 export default function StudentLogin() {
   const nav = useNavigate();
@@ -18,30 +18,23 @@ export default function StudentLogin() {
       setError("");
       setLoading(true);
 
-      // Find student by username
-      const usernameQuery = query(
-        collection(db, "students"),
-        where("username", "==", username)
+      // Fetch student record from MongoDB by username
+      const { data: studentData } = await axios.get(
+        `/api/students/by-username/${username}`
       );
-      const usernameSnapshot = await getDocs(usernameQuery);
 
-      if (usernameSnapshot.empty) {
+      if (!studentData) {
         setError("Username not found 👀");
         setLoading(false);
         return;
       }
 
-      // Get student data
-      const studentDoc = usernameSnapshot.docs[0];
-      const studentData = studentDoc.data();
-      const email = studentData.email;
-
-      // Sign in with email and password
-      await signInWithEmailAndPassword(auth, email, password);
+      // Sign in with Firebase Auth using the email from MongoDB
+      await signInWithEmailAndPassword(auth, studentData.email, password);
 
       // Store student info in localStorage
       localStorage.setItem("studentName", studentData.username);
-      localStorage.setItem("studentUserId", studentDoc.id);
+      localStorage.setItem("studentUserId", studentData._id);
       localStorage.setItem("studentFullName", studentData.name);
       localStorage.setItem("studentEmail", studentData.email);
 
@@ -54,8 +47,15 @@ export default function StudentLogin() {
   }
 
   function getFirebaseErrorMessage(error: any) {
-    const code = error?.code || "";
+    // Axios HTTP errors (e.g. 404 username not found)
+    if (error?.response) {
+      const status = error.response.status;
+      if (status === 404) return "Username not found 👀";
+      if (status === 500) return "Server error. Try again later 🌐";
+      return error.response.data?.message || "Login failed. Please try again 😕";
+    }
 
+    const code = error?.code || "";
     switch (code) {
       case "auth/user-not-found":
         return "No account found 👀";

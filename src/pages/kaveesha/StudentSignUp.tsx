@@ -2,9 +2,9 @@ import Navbar from "../../components/kaveesha/Navbar";
 import PrimaryButton from "../../components/kaveesha/PrimaryButton";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc, query, collection, where, getDocs } from "firebase/firestore";
-import { auth, db } from "../../firebase";
+import { createUserWithEmailAndPassword, deleteUser } from "firebase/auth";
+import { auth } from "../../firebase";
+import axios from "axios";
 
 export default function StudentSignup() {
   const nav = useNavigate();
@@ -18,61 +18,63 @@ export default function StudentSignup() {
   const [loading, setLoading] = useState(false);
 
   async function handleSignup() {
+    let firebaseUser = null;
     try {
       setError("");
       setLoading(true);
 
-      // Check if username already exists
-      const usernameQuery = query(
-        collection(db, "students"),
-        where("username", "==", username)
-      );
-      const usernameSnapshot = await getDocs(usernameQuery);
+      // Step 1: Firebase Auth
+      const userCred = await createUserWithEmailAndPassword(auth, email, password);
+      firebaseUser = userCred.user;
 
-      if (!usernameSnapshot.empty) {
-        setError("Username already taken. Please choose another one.");
-        setLoading(false);
-        return;
-      }
-
-      // Create Firebase auth user
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // Store student data in Firestore
-      await setDoc(doc(db, "students", user.uid), {
+      // Step 2: Save to MongoDB
+      const { data: studentData } = await axios.post("/api/students", {
         username,
         name,
         email,
         age: parseInt(age),
         gender,
-        userId: user.uid,
-        createdAt: new Date().toISOString(),
+        firebaseUid: firebaseUser.uid,
       });
 
-      alert("Account created successfully! 🎉");
-      nav("/student/login");
+      // Step 3: Set session (same as MentorSignUp)
+      localStorage.clear();
+      localStorage.setItem("studentName", studentData.username);
+      localStorage.setItem("studentUserId", studentData._id);
+      localStorage.setItem("studentFullName", studentData.name);
+      localStorage.setItem("studentEmail", studentData.email);
+
+      nav("/student/landing");
     } catch (err: any) {
-      setError(getFirebaseErrorMessage(err));
+      // If Firebase Auth succeeded but MongoDB failed, delete the auth user
+      // so the student can retry without getting "email already in use"
+      if (firebaseUser) {
+        try { await deleteUser(firebaseUser); } catch (_) {}
+      }
+      setError(getErrorMessage(err));
     } finally {
       setLoading(false);
     }
   }
 
-  function getFirebaseErrorMessage(error: any) {
-    const code = error?.code || "";
+  function getErrorMessage(error: any) {
+    // Axios/server errors
+    if (error?.response) {
+      return error.response.data?.message || "Server error. Please try again 🌐";
+    }
 
+    const code = error?.code || "";
     switch (code) {
       case "auth/email-already-in-use":
-        return "Email already registered 📧";
+        return "This email is already registered 📧";
       case "auth/invalid-email":
-        return "Invalid email address ✉️";
+        return "Please enter a valid email address ✉️";
       case "auth/weak-password":
-        return "Password should be at least 6 characters 🔑";
+        return "Password must be at least 6 characters 🔐";
       case "auth/network-request-failed":
-        return "Network error. Try again 🌐";
+        return "Network error. Check your connection 🌐";
       default:
-        return "Signup failed. Please try again 😕";
+        return "Something went wrong. Please try again 😕";
     }
   }
 
