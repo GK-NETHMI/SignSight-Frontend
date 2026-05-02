@@ -11,6 +11,80 @@ import GlassPage from "../../../components/ui/GlassPage";
 import { resetAnswers, useAppDispatch, useAppSelector } from "../../../store";
 import { selectResultsByLevel } from "../../../store/selectors";
 import { submitLevelResults } from "../../../services/submitLevelResults";
+import advancedLevelQuestions from "../../../utils/kaveesha/advanced_level.json";
+import basicLevelQuestions from "../../../utils/kaveesha/basic_level.json";
+import intermediateLevelQuestions from "../../../utils/kaveesha/intermediate_level.json";
+
+const QUESTIONS_PER_ATTEMPT = 10;
+
+const levelCategoryOrder: Record<string, string[]> = {
+  basic: ["category_1", "category_2"],
+  intermediate: ["category_2", "category_3"],
+  advanced: ["category_3", "category_4"],
+};
+
+const levelQuestionData: Record<string, any> = {
+  basic: basicLevelQuestions,
+  intermediate: intermediateLevelQuestions,
+  advanced: advancedLevelQuestions,
+};
+
+function shuffle<T>(items: T[]) {
+  return [...items].sort(() => Math.random() - 0.5);
+}
+
+function pickRandomQuestions(data: any, level?: string) {
+  const order = levelCategoryOrder[level ?? ""] ?? levelCategoryOrder.basic;
+  const categories = data?.categories ?? {};
+  const availableCategories = order.filter(
+    (category) => Array.isArray(categories[category]) && categories[category].length > 0,
+  );
+
+  if (availableCategories.length === 0) return data;
+
+  const category4Quota = availableCategories.includes("category_4") ? 1 : 0;
+  const selectableCategories = availableCategories.filter((category) => category !== "category_4");
+  const remainingQuota = QUESTIONS_PER_ATTEMPT - category4Quota;
+  const baseQuota =
+    selectableCategories.length > 0
+      ? Math.floor(remainingQuota / selectableCategories.length)
+      : 0;
+  let extraQuota =
+    selectableCategories.length > 0
+      ? remainingQuota % selectableCategories.length
+      : 0;
+
+  const selectedCategories = { ...categories };
+  const leftovers: Record<string, any[]> = {};
+
+  for (const category of availableCategories) {
+    const pool = shuffle(categories[category]);
+    const quota =
+      category === "category_4"
+        ? category4Quota
+        : baseQuota + (extraQuota-- > 0 ? 1 : 0);
+
+    selectedCategories[category] = pool.slice(0, quota);
+    leftovers[category] = pool.slice(quota);
+  }
+
+  let selectedCount = availableCategories.reduce(
+    (count, category) => count + selectedCategories[category].length,
+    0,
+  );
+
+  for (const category of availableCategories) {
+    while (selectedCount < QUESTIONS_PER_ATTEMPT && leftovers[category]?.length) {
+      selectedCategories[category].push(leftovers[category].shift());
+      selectedCount++;
+    }
+  }
+
+  return {
+    ...data,
+    categories: selectedCategories,
+  };
+}
 
 function FullScreenLoader() {
   return (
@@ -76,9 +150,11 @@ export default function QuizEngine() {
       return;
     }
 
-    fetch(`/src/utils/kaveesha/${level}_level.json`)
-      .then((r) => r.json())
-      .then(setData);
+    setCatIndex(0);
+    setQIndex(0);
+
+    const quizData = levelQuestionData[level ?? "basic"] ?? basicLevelQuestions;
+    setData(pickRandomQuestions(quizData, level));
   }, [level, studentName, navigate]);
 
   if (!data)
@@ -88,12 +164,7 @@ export default function QuizEngine() {
       </GlassPage>
     );
 
-  const order =
-    level === "basic"
-      ? ["category_1", "category_2"]
-      : level === "intermediate"
-        ? ["category_2", "category_3"]
-        : ["category_3", "category_4"];
+  const order = levelCategoryOrder[level ?? ""] ?? levelCategoryOrder.basic;
 
   const category = order[catIndex];
   const question = data.categories[category][qIndex];
