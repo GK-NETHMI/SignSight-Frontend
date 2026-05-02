@@ -5,7 +5,7 @@
       {
         "id": "B-C1-1",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter A.",
+        "question": "Select the sign for Tamil letter 'அ'",
         "options": [
           {
             "id": "A",
@@ -29,7 +29,7 @@
       {
         "id": "B-C1-2",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter AU.",
+        "question": "Select the sign for Tamil letter 'ஔ'",
         "options": [
           {
             "id": "A",
@@ -53,7 +53,7 @@
       {
         "id": "B-C1-3",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter I.",
+        "question": "Select the sign for Tamil letter 'இ'",
         "options": [
           {
             "id": "A",
@@ -77,7 +77,7 @@
       {
         "id": "B-C1-4",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter KAU.",
+        "question": "Select the sign for Tamil letter 'கா'",
         "options": [
           {
             "id": "A",
@@ -101,7 +101,7 @@
       {
         "id": "B-C1-5",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter NA.",
+        "question": "Select the sign for Tamil letter 'ந'",
         "options": [
           {
             "id": "A",
@@ -125,7 +125,7 @@
       {
         "id": "B-C1-6",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter NGU.",
+        "question": "Select the sign for Tamil letter 'ங'",
         "options": [
           {
             "id": "A",
@@ -149,7 +149,7 @@
       {
         "id": "B-C1-7",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter O.",
+        "question": "Select the sign for Tamil letter 'ஒ'",
         "options": [
           {
             "id": "A",
@@ -173,7 +173,7 @@
       {
         "id": "B-C1-8",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TAI.",
+        "question": "Select the sign for Tamil letter 'தை'",
         "options": [
           {
             "id": "A",
@@ -197,7 +197,7 @@
       {
         "id": "B-C1-9",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TE.",
+        "question": "Select the sign for Tamil letter 'தெ'",
         "options": [
           {
             "id": "A",
@@ -221,7 +221,7 @@
       {
         "id": "B-C1-10",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TI.",
+        "question": "Select the sign for Tamil letter 'தி'.",
         "options": [
           {
             "id": "A",
@@ -245,7 +245,7 @@
       {
         "id": "B-C1-11",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TU.",
+        "question": "Select the sign for Tamil letter 'து'.",
         "options": [
           {
             "id": "A",
@@ -485,7 +485,7 @@
       {
         "id": "B-C1-21",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter A.",
+        "question": "Select the sign for Tamil letter 'அ'.",
         "options": [
           {
             "id": "A",
@@ -509,7 +509,7 @@
       {
         "id": "B-C1-22",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter AU.",
+        "question": "Select the sign for Tamil letter 'ஔ'.",
         "options": [
           {
             "id": "A",
@@ -533,7 +533,7 @@
       {
         "id": "B-C1-23",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter I.",
+        "question": "Select the sign for Tamil letter 'இ'.",
         "options": [
           {
             "id": "A",
@@ -557,7 +557,7 @@
       {
         "id": "B-C1-24",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter KAU.",
+        "question": "Select the sign for Tamil letter 'கா'.",
         "options": [
           {
             "id": "A",
@@ -581,7 +581,7 @@
       {
         "id": "B-C1-25",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter NA.",
+        "question": "Select the sign for Tamil letter 'ந'.",
         "options": [
           {
             "id": "A",
@@ -605,7 +605,7 @@
       {
         "id": "B-C1-26",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter NGU.",
+        "question": "Select the sign for Tamil letter 'ங'.",
         "options": [
           {
             "id": "A",
@@ -629,7 +629,7 @@
       {
         "id": "B-C1-27",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter O.",
+        "question": "Select the sign for Tamil letter 'ஒ'.",
         "options": [
           {
             "id": "A",
@@ -653,7 +653,7 @@
       {
         "id": "B-C1-28",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TAI.",
+        "question": "Select the sign for Tamil letter 'தை'.",
         "options": [
           {
             "id": "A",
@@ -677,7 +677,7 @@
       {
         "id": "B-C1-29",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TE.",
+        "question": "Select the sign for Tamil letter 'தெ'.",
         "options": [
           {
             "id": "A",
@@ -701,7 +701,7 @@
       {
         "id": "B-C1-30",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TI.",
+        "question": "Select the sign for Tamil letter 'தி'.",
         "options": [
           {
             "id": "A",
@@ -725,7 +725,7 @@
       {
         "id": "B-C1-31",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TU.",
+        "question": "Select the sign for Tamil letter 'து'.",
         "options": [
           {
             "id": "A",
@@ -965,7 +965,7 @@
       {
         "id": "B-C1-41",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter A.",
+        "question": "Select the sign for Tamil letter 'அ'.",
         "options": [
           {
             "id": "A",
@@ -989,7 +989,7 @@
       {
         "id": "B-C1-42",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter AU.",
+        "question": "Select the sign for Tamil letter 'ஔ'.",
         "options": [
           {
             "id": "A",
@@ -1013,7 +1013,7 @@
       {
         "id": "B-C1-43",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter I.",
+        "question": "Select the sign for Tamil letter 'இ'.",
         "options": [
           {
             "id": "A",
@@ -1037,7 +1037,7 @@
       {
         "id": "B-C1-44",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter KAU.",
+        "question": "Select the sign for Tamil letter 'கா'.",
         "options": [
           {
             "id": "A",
@@ -1061,7 +1061,7 @@
       {
         "id": "B-C1-45",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter NA.",
+        "question": "Select the sign for Tamil letter 'ந'.",
         "options": [
           {
             "id": "A",
@@ -1085,7 +1085,7 @@
       {
         "id": "B-C1-46",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter NGU.",
+        "question": "Select the sign for Tamil letter 'ங'.",
         "options": [
           {
             "id": "A",
@@ -1109,7 +1109,7 @@
       {
         "id": "B-C1-47",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter O.",
+        "question": "Select the sign for Tamil letter 'ஒ'.",
         "options": [
           {
             "id": "A",
@@ -1133,7 +1133,7 @@
       {
         "id": "B-C1-48",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TAI.",
+        "question": "Select the sign for Tamil letter 'தை'.",
         "options": [
           {
             "id": "A",
@@ -1157,7 +1157,7 @@
       {
         "id": "B-C1-49",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TE.",
+        "question": "Select the sign for Tamil letter 'தெ'.",
         "options": [
           {
             "id": "A",
@@ -1181,7 +1181,7 @@
       {
         "id": "B-C1-50",
         "area": "alphabet",
-        "question": "Select the sign for Tamil letter TI.",
+        "question": "Select the sign for Tamil letter 'தி'.",
         "options": [
           {
             "id": "A",
